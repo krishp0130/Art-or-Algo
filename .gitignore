@@ -17,10 +17,15 @@ client/dist/
 # OS
 .DS_Store
 
-# HCI failure gallery (regenerate with ml/analyze_failures.py)
+# HCI failure gallery images (large); manifest can be committed for static UI metadata
 server/public/failures/*
 !server/public/failures/.gitkeep
+!server/public/failures/failures.json
 
-# Trained weights & run metrics (regenerate with run_train.py / ml.train)
+# Synced into Vue public/ at build time (optional local copies)
+client/public/metrics.json
+client/public/failures/*
+!client/public/failures/.gitkeep
+
+# Trained weights (metrics.json is safe to commit for static dashboard / Pages)
 /models/*.pth
-/models/metrics.json

@@ -68,3 +68,13 @@ out = predict_json_for_backend(session, "upload.png")
 ```bash
 python3 -m unittest tests.test_inference_cli
 ```
+
+## GitHub Pages + API
+
+GitHub Pages only serves **static** files. This repo’s workflow (`.github/workflows/deploy-pages.yml`) builds the Vue app with `VITE_BASE_PATH=/Art-or-Algo/` (change if your repo name differs).
+
+1. **Repository → Settings → Pages**: Source = **GitHub Actions**.
+2. **Repository → Settings → Variables**: add `VITE_API_BASE` = your deployed Express URL (e.g. `https://art-or-algo-api.onrender.com`) so the **classifier** can reach `POST /api/classify`. Leave it empty to rely on baked-in `metrics.json` + `failures/failures.json` only (metrics + failure *text* work; images need either committed thumbnails or the API).
+3. After training / `analyze_failures`, commit **`models/metrics.json`** and **`server/public/failures/failures.json`** so CI can copy them into the static build. Failure **images** stay gitignored by default—run `analyze_failures` on the API host or add `-f` git add for a small curated set if you want them on Pages without a backend.
+
+**Full stack locally:** `npm start` (builds client, serves `client/dist` + `/api` on port 3000). Set `PYTHON_BIN` if not using `.venv`.

@@ -57,9 +57,15 @@ function goAbout() {
 
       <footer class="foot">
         <p>
-          Production: <code>npm start</code> from the repo root builds the Vue app and serves
-          <code>client/dist</code> with Express. Dev: <code>npm run dev</code> in
-          <code>client/</code> with the API on port 3000 (Vite proxies <code>/api</code>).
+          <strong>Local full stack:</strong> <code>npm start</code> — builds Vue, serves
+          <code>client/dist</code> + Express <code>/api</code> (Python ViT + uploads). Dev:
+          <code>npm run dev</code> in <code>client/</code> with API on port 3000 (Vite proxies
+          <code>/api</code>).
+        </p>
+        <p>
+          <strong>GitHub Pages:</strong> static build + baked <code>metrics.json</code> /
+          <code>failures.json</code>; set <code>VITE_API_BASE</code> when building for remote
+          inference and failure thumbnails. See <code>README.md</code>.
         </p>
       </footer>
     </template>
