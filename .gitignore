@@ -12,3 +12,7 @@ __pycache__/
 
 # OS
 .DS_Store
+
+# Trained weights & run metrics (regenerate with ml/train.py)
+/models/*.pth
+/models/metrics.json
