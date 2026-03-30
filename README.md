@@ -10,6 +10,7 @@ Images live under **`data/Art/`** (`AiArtData/` vs `RealArt/`). The raw images a
 
 ```bash
 scripts/download_dataset.sh
+python3 scripts/split_train_eval.py   # stratified train/eval under data/train & data/eval
 ```
 
-See `data/README.md` for layout and Kaggle auth notes.
+See `data/README.md` for layout, split details, and Kaggle auth notes.

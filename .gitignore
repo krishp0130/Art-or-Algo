@@ -1,6 +1,9 @@
 # Kaggle image dataset (~480MB) — use scripts/download_dataset.sh locally
 /data/Art/
 /data/*.zip
+# Train/eval views — regenerate with scripts/split_train_eval.py
+/data/train/
+/data/eval/
 
 # Python
 .venv/
