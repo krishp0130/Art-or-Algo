@@ -1,0 +1,11 @@
+# Kaggle image dataset (~480MB) — use scripts/download_dataset.sh locally
+/data/Art/
+/data/*.zip
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
