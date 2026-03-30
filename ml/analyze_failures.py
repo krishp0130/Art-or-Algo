@@ -194,7 +194,7 @@ def main() -> None:
                 ext = path.suffix.lower() or ".png"
                 fname = (
                     f"{failure_idx:03d}_true{true_name}_pred{pred_name}_"
-                    f"p{pred:.3f}_{_safe_stem(path.name)}{ext}"
+                    f"p{p_pred:.3f}_{_safe_stem(path.name)}{ext}"
                 )
                 dest = args.out_dir / fname
                 shutil.copy2(path, dest)
