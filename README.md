@@ -2,45 +2,69 @@
 
 CMU **05-318** — *Art or Algorithm*: distinguishing human creativity from AI ingenuity (image classifier + web app).
 
+## Environment
+
+```bash
+chmod +x setup_env.sh
+./setup_env.sh          # macOS / Linux: venv + pip install + checks data/train & data/val
+# Windows: setup_env.bat
+```
+
+Python deps live in **`requirements.txt`** (`torch`, `torchvision`, `timm`, `pandas`, `opencv-python`, `matplotlib`, …).
+
 ## Dataset
 
 [Kaggle: AI art VS Human art](https://www.kaggle.com/datasets/hassnainzaidi/ai-art-vs-human-art) (`hassnainzaidi/ai-art-vs-human-art`, CC0-1.0).
 
-Images live under **`data/Art/`** (`AiArtData/` vs `RealArt/`). The raw images are **not** tracked in git (~480MB); clone the repo, then run:
-
 ```bash
 scripts/download_dataset.sh
-python3 scripts/split_train_eval.py   # stratified train/eval under data/train & data/eval
+python3 scripts/split_train_eval.py   # → data/train and data/val
 ```
 
-See `data/README.md` for layout, split details, and Kaggle auth notes.
+See `data/README.md` for layout and Kaggle auth.
 
-## Training (ViT-B/16)
+## Training (master runner)
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements-ml.txt
-python3 -m ml.train
+source .venv/bin/activate   # or .venv\Scripts\activate on Windows
+python3 run_train.py
 ```
 
-- **Checkpoint:** `models/best_vit.pth` (best validation accuracy; includes `model_state_dict`, `class_to_idx`, epoch).
-- **Metrics (dashboard):** `models/metrics.json` — per-epoch `train_loss`, `val_loss`, `train_acc`, `val_acc`, plus `best_*` and `hyperparams`.
+- **Checkpoint:** `models/final_vit.pth` (best validation accuracy during the run).
+- **Metrics:** `models/metrics.json` — **final_accuracy**, per-class **precision** / **recall**, **confusion_matrix** `[[TN, FP],[FN, TP]]`-style rows=true / cols=pred, **history**, early-stop metadata.
 
-Optional flags: `--epochs`, `--batch-size`, `--lr`, `--data-root`, `--device cuda|mps|cpu`, `--checkpoint`, `--metrics-out`.
+Defaults: up to **20** epochs, minimum **10** before early stopping, patience **4**. Override with `--epochs-max`, `--epochs-min`, `--early-stop-patience`.
 
-## Inference (web backend)
+Legacy entry point: `python3 -m ml.train` (writes `models/best_vit.pth`).
 
-After `models/best_vit.pth` exists:
+## Failure analysis (HCI)
+
+High-confidence wrong predictions on the validation set → `server/public/failures/` + `failures.json`:
+
+```bash
+python3 ml/analyze_failures.py --checkpoint models/final_vit.pth --conf-threshold 0.9
+```
+
+## Inference (Node.js backend)
+
+One JSON object on **stdout** (for `child_process` / Express):
+
+```bash
+python3 -m ml.inference --image path/to/file.png --checkpoint models/final_vit.pth
+```
+
+Fields include **`prediction`**, **`confidence`**, **`probabilities`**, **`attention_map_base64`** (PNG), and **`ok`**.
 
 ```python
-from ml.inference import load_model, predict, explain_prediction
-
-session = load_model("models/best_vit.pth")
-out = predict(session, "path/to/image.png")  # label, confidence, probabilities
-
-# Optional: Attention Rollout heatmap as base64 / data URL for `<img src>`
-x = explain_prediction(session, "path/to/image.png", original_for_overlay=pil_img)
-# x["heatmap_data_url"], x["heatmap_png_base64"]
+from ml.inference import load_model, predict_json_for_backend
+session = load_model("models/final_vit.pth")
+out = predict_json_for_backend(session, "upload.png")
 ```
 
-- **Attention Rollout** fuses self-attention from **all** encoder layers (Chefer et al.–style; each layer’s weights are captured, including the final block). Use `rollout_mode="last_layer"` in `attention_heatmap_2d` / `explain_prediction` if you only want the **last** block’s attention.
+**Attention Rollout** uses all encoder layers by default; use `--rollout-mode last_layer` for the final block only.
+
+## Tests
+
+```bash
+python3 -m unittest tests.test_inference_cli
+```

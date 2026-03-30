@@ -1,9 +1,10 @@
 """Load fine-tuned ViT-B/16, run classification, Attention Rollout, and heatmap overlays."""
 from __future__ import annotations
 
+import argparse
 import base64
 import io
-import math
+import json
 import sys
 from contextlib import contextmanager
 from dataclasses import dataclass
@@ -328,3 +329,92 @@ def explain_prediction(
         "heatmap_data_url": heatmap_data_url(overlay, format=image_format),
         "rollout_mode": rollout_mode,
     }
+
+
+def predict_json_for_backend(
+    session: LoadedViT,
+    image: Image.Image | str | Path,
+    *,
+    size: int = 224,
+    rollout_mode: RolloutMode = "rollout",
+    overlay_alpha: float = 0.45,
+    original_for_overlay: Image.Image | None = None,
+) -> dict[str, Any]:
+    """Structured dict for Node: prediction, confidence, probabilities, attention map (base64 PNG)."""
+    pred = predict(session, image, size=size)
+    hm2d = attention_heatmap_2d(
+        session, image, size=size, rollout_mode=rollout_mode
+    )
+    orig = (
+        preprocess_original_for_overlay(original_for_overlay)
+        if original_for_overlay is not None
+        else preprocess_original_for_overlay(image)
+    )
+    overlay = overlay_attention_heatmap(orig, hm2d, alpha=overlay_alpha)
+    b64 = heatmap_to_base64(overlay, format="PNG")
+    return {
+        "prediction": pred["label"],
+        "confidence": pred["confidence"],
+        "label_id": pred["label_id"],
+        "probabilities": pred["probabilities"],
+        "attention_map_base64": b64,
+    }
+
+
+def _default_checkpoint() -> Path:
+    final_p = _ROOT / "models" / "final_vit.pth"
+    best_p = _ROOT / "models" / "best_vit.pth"
+    if final_p.is_file():
+        return final_p
+    if best_p.is_file():
+        return best_p
+    return final_p
+
+
+def main_cli() -> None:
+    """Print a single JSON object on stdout for ``child_process`` / Express bridges."""
+    parser = argparse.ArgumentParser(description="ViT inference JSON for Node.js backend.")
+    parser.add_argument("--image", type=Path, required=True)
+    parser.add_argument("--checkpoint", type=Path, default=None)
+    parser.add_argument("--device", type=str, default="auto")
+    parser.add_argument(
+        "--rollout-mode",
+        choices=("rollout", "last_layer"),
+        default="rollout",
+    )
+    args = parser.parse_args()
+
+    ckpt = args.checkpoint or _default_checkpoint()
+    if not ckpt.is_file():
+        print(
+            json.dumps(
+                {
+                    "ok": False,
+                    "error": f"Checkpoint not found: {ckpt}. Train with run_train.py first.",
+                }
+            ),
+            flush=True,
+        )
+        sys.exit(1)
+    if not args.image.is_file():
+        print(
+            json.dumps({"ok": False, "error": f"Image not found: {args.image}"}),
+            flush=True,
+        )
+        sys.exit(1)
+
+    session = load_model(
+        ckpt,
+        device=args.device if args.device != "auto" else None,
+    )
+    out = predict_json_for_backend(
+        session,
+        args.image,
+        rollout_mode=args.rollout_mode,
+    )
+    out["ok"] = True
+    print(json.dumps(out), flush=True)
+
+
+if __name__ == "__main__":
+    main_cli()

@@ -56,33 +56,33 @@ def vit_eval_transforms(*, size: int = 224) -> transforms.Compose:
 
 def build_dataloaders(
     train_dir: Path | str,
-    eval_dir: Path | str,
+    val_dir: Path | str,
     *,
     batch_size: int = 32,
     num_workers: int = 0,
     pin_memory: bool | None = None,
     size: int = 224,
 ) -> tuple[DataLoader, DataLoader, dict[str, Any]]:
-    """Return ``(train_loader, eval_loader, meta)`` where ``meta`` includes ``class_to_idx`` / ``idx_to_class``."""
+    """Return ``(train_loader, val_loader, meta)`` where ``meta`` includes ``class_to_idx`` / ``idx_to_class``."""
     train_dir = Path(train_dir)
-    eval_dir = Path(eval_dir)
+    val_dir = Path(val_dir)
     if not train_dir.is_dir():
         raise FileNotFoundError(f"Missing train directory: {train_dir}")
-    if not eval_dir.is_dir():
-        raise FileNotFoundError(f"Missing eval directory: {eval_dir}")
+    if not val_dir.is_dir():
+        raise FileNotFoundError(f"Missing validation directory: {val_dir}")
 
     train_ds = datasets.ImageFolder(
         str(train_dir),
         transform=vit_train_transforms(size=size),
     )
-    eval_ds = datasets.ImageFolder(
-        str(eval_dir),
+    val_ds = datasets.ImageFolder(
+        str(val_dir),
         transform=vit_eval_transforms(size=size),
     )
-    if train_ds.class_to_idx != eval_ds.class_to_idx:
+    if train_ds.class_to_idx != val_ds.class_to_idx:
         raise ValueError(
-            "Train and eval class folders must match. "
-            f"train={train_ds.class_to_idx} eval={eval_ds.class_to_idx}"
+            "Train and val class folders must match. "
+            f"train={train_ds.class_to_idx} val={val_ds.class_to_idx}"
         )
 
     if pin_memory is None:
@@ -96,8 +96,8 @@ def build_dataloaders(
         pin_memory=pin_memory,
         drop_last=False,
     )
-    eval_loader = DataLoader(
-        eval_ds,
+    val_loader = DataLoader(
+        val_ds,
         batch_size=batch_size,
         shuffle=False,
         num_workers=num_workers,
@@ -112,4 +112,4 @@ def build_dataloaders(
         "num_classes": len(train_ds.classes),
         "class_names": list(train_ds.classes),
     }
-    return train_loader, eval_loader, meta
+    return train_loader, val_loader, meta

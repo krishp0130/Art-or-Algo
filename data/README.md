@@ -11,16 +11,16 @@ data/
     RealArt/      # Human-created artwork images
 ```
 
-## Train / evaluation split
+## Train / validation split
 
-After `Art/` exists, build stratified **train** and **eval** sets (default **80% / 20%** per class, seed **42**). Files are **hard-linked** into `train/` and `eval/` so disk usage stays the same.
+After `Art/` exists, build stratified **train** and **val** sets (default **80% / 20%** per class, seed **42**). Files are **hard-linked** into `train/` and `val/` so disk usage stays the same.
 
 ```text
 data/
   train/
     ai/           # linked from Art/AiArtData
     human/        # linked from Art/RealArt
-  eval/
+  val/
     ai/
     human/
 ```
@@ -28,6 +28,12 @@ data/
 ```bash
 python3 scripts/split_train_eval.py
 # optional: --train-ratio 0.85 --seed 123 --mode copy|symlink|link
+```
+
+If you still have `data/eval` from an older layout, rename it:
+
+```bash
+mv data/eval data/val
 ```
 
 Re-download raw Kaggle data from the project root:

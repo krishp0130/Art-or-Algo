@@ -1,18 +1,26 @@
 # Kaggle image dataset (~480MB) — use scripts/download_dataset.sh locally
 /data/Art/
 /data/*.zip
-# Train/eval views — regenerate with scripts/split_train_eval.py
+# Train/val views — regenerate with scripts/split_train_eval.py
 /data/train/
-/data/eval/
+/data/val/
 
 # Python
 .venv/
 __pycache__/
 *.pyc
 
+# Node (Vue client + Express server)
+node_modules/
+client/dist/
+
 # OS
 .DS_Store
 
-# Trained weights & run metrics (regenerate with ml/train.py)
+# HCI failure gallery (regenerate with ml/analyze_failures.py)
+server/public/failures/*
+!server/public/failures/.gitkeep
+
+# Trained weights & run metrics (regenerate with run_train.py / ml.train)
 /models/*.pth
 /models/metrics.json

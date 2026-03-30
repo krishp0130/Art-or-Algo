@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Split Kaggle art images into train / eval folders (stratified by class).
+"""Split Kaggle art images into train / validation folders (stratified by class).
 
 Uses hard links by default so files are not duplicated on disk. Falls back to
 copy if linking fails (e.g. cross-device).
@@ -60,7 +60,7 @@ def main() -> None:
         "--train-ratio",
         type=float,
         default=0.8,
-        help="Fraction of each class assigned to train (rest is eval)",
+        help="Fraction of each class assigned to train (rest is val)",
     )
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument(
@@ -84,33 +84,33 @@ def main() -> None:
 
     random.seed(args.seed)
     train_root = args.data_root / "train"
-    eval_root = args.data_root / "eval"
+    val_root = args.data_root / "val"
 
-    for split_root in (train_root, eval_root):
+    for split_root in (train_root, val_root):
         if split_root.exists():
             shutil.rmtree(split_root)
 
     splits = [
-        ("ai", ai_src, train_root / "ai", eval_root / "ai"),
-        ("human", human_src, train_root / "human", eval_root / "human"),
+        ("ai", ai_src, train_root / "ai", val_root / "ai"),
+        ("human", human_src, train_root / "human", val_root / "human"),
     ]
 
     summary: list[tuple[str, int, int]] = []
-    for _label, src_dir, train_dir, eval_dir in splits:
+    for _label, src_dir, train_dir, val_dir in splits:
         files = list_images(src_dir)
         random.shuffle(files)
         n_train = int(len(files) * args.train_ratio)
         train_files = files[:n_train]
-        eval_files = files[n_train:]
+        val_files = files[n_train:]
         place(train_files, train_dir, args.mode)
-        place(eval_files, eval_dir, args.mode)
-        summary.append((_label, len(train_files), len(eval_files)))
+        place(val_files, val_dir, args.mode)
+        summary.append((_label, len(train_files), len(val_files)))
 
     print("Split complete (per class):")
-    for label, n_tr, n_ev in summary:
-        print(f"  {label:6}  train={n_tr:4}  eval={n_ev:4}")
+    for label, n_tr, n_val in summary:
+        print(f"  {label:6}  train={n_tr:4}  val={n_val:4}")
     print(f"  train dir: {train_root}")
-    print(f"  eval dir:  {eval_root}")
+    print(f"  val dir:   {val_root}")
 
 
 if __name__ == "__main__":
