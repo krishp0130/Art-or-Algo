@@ -1,0 +1,10 @@
+{
+  "name": "art-or-algorithm",
+  "private": true,
+  "scripts": {
+    "sync:data": "node scripts/sync-static-assets.mjs",
+    "build:client": "npm run sync:data && npm run build --prefix client",
+    "start": "npm run build:client && node server/index.js",
+    "dev:server": "node server/index.js"
+  }
+}
