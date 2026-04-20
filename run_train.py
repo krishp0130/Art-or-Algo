@@ -68,10 +68,11 @@ def collect_val_predictions(
     device: torch.device,
 ) -> tuple[np.ndarray, np.ndarray]:
     model.eval()
+    nb = device.type == "cuda"
     ys: list[int] = []
     ps: list[int] = []
     for images, targets in loader:
-        images = images.to(device, non_blocking=True)
+        images = images.to(device, non_blocking=nb)
         logits = model(images)
         pred = logits.argmax(dim=1)
         ys.extend(targets.tolist())
@@ -82,12 +83,12 @@ def collect_val_predictions(
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-root", type=Path, default=_ROOT / "data")
-    parser.add_argument("--epochs-max", type=int, default=20, help="Maximum epochs (10–20 typical)")
-    parser.add_argument("--epochs-min", type=int, default=10, help="Minimum epochs before early stop")
+    parser.add_argument("--epochs-max", type=int, default=25, help="Maximum epochs (15–25 typical)")
+    parser.add_argument("--epochs-min", type=int, default=12, help="Minimum epochs before early stop")
     parser.add_argument(
         "--early-stop-patience",
         type=int,
-        default=4,
+        default=5,
         help="Stop if val acc does not improve for this many epochs (after --epochs-min)",
     )
     parser.add_argument(
@@ -97,8 +98,12 @@ def main() -> None:
         help="Minimum val-acc improvement to reset patience",
     )
     parser.add_argument("--batch-size", type=int, default=16)
-    parser.add_argument("--lr", type=float, default=2e-4)
-    parser.add_argument("--weight-decay", type=float, default=0.05)
+    parser.add_argument("--lr", type=float, default=3e-4, help="Head learning rate")
+    parser.add_argument("--backbone-lr-factor", type=float, default=0.1, help="Backbone LR = lr * factor")
+    parser.add_argument("--weight-decay", type=float, default=0.01)
+    parser.add_argument("--label-smoothing", type=float, default=0.1)
+    parser.add_argument("--warmup-epochs", type=int, default=3)
+    parser.add_argument("--unfreeze-blocks", type=int, default=3, help="Unfreeze last N ViT encoder blocks")
     parser.add_argument("--num-workers", type=int, default=0)
     parser.add_argument("--device", type=str, default="auto")
     parser.add_argument("--seed", type=int, default=42)
@@ -132,13 +137,35 @@ def main() -> None:
 
     num_classes = int(data_meta["num_classes"])
     class_names = list(data_meta["class_names"])
-    model = build_model(num_classes).to(device)
-    criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.AdamW(
-        model.parameters(), lr=args.lr, weight_decay=args.weight_decay
+    model = build_model(
+        num_classes, unfreeze_last_n_blocks=args.unfreeze_blocks
+    ).to(device)
+
+    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    total = sum(p.numel() for p in model.parameters())
+    print(f"Parameters: {trainable:,} trainable / {total:,} total "
+          f"({100 * trainable / total:.1f}%)")
+
+    criterion = nn.CrossEntropyLoss(label_smoothing=args.label_smoothing)
+
+    head_params = list(model.heads.parameters()) + list(model.encoder.ln.parameters())
+    head_ids = {id(p) for p in head_params}
+    backbone_params = [p for p in model.parameters() if p.requires_grad and id(p) not in head_ids]
+    optimizer = torch.optim.AdamW([
+        {"params": head_params, "lr": args.lr},
+        {"params": backbone_params, "lr": args.lr * args.backbone_lr_factor},
+    ], weight_decay=args.weight_decay)
+
+    warmup_scheduler = torch.optim.lr_scheduler.LinearLR(
+        optimizer, start_factor=0.1, total_iters=args.warmup_epochs
     )
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-        optimizer, T_max=max(args.epochs_max, 1)
+    cosine_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+        optimizer, T_max=max(args.epochs_max - args.warmup_epochs, 1)
+    )
+    scheduler = torch.optim.lr_scheduler.SequentialLR(
+        optimizer,
+        schedulers=[warmup_scheduler, cosine_scheduler],
+        milestones=[args.warmup_epochs],
     )
 
     use_amp = device.type == "cuda"
@@ -187,6 +214,7 @@ def main() -> None:
             best_val_acc = va_acc
             best_val_loss = va_loss
             best_epoch = epoch
+            cpu_state = {k: v.cpu() for k, v in model.state_dict().items()}
             payload = {
                 "model": "vit_b_16",
                 "weights_backbone": "IMAGENET1K_V1",
@@ -197,7 +225,7 @@ def main() -> None:
                 "idx_to_class": {
                     str(k): v for k, v in data_meta["idx_to_class"].items()
                 },
-                "model_state_dict": model.state_dict(),
+                "model_state_dict": cpu_state,
             }
             torch.save(payload, args.checkpoint)
             print(f"  saved new best -> {args.checkpoint}")
@@ -214,14 +242,15 @@ def main() -> None:
     elapsed = time.perf_counter() - t0
 
     try:
-        ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)
+        ckpt = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
     except TypeError:
-        ckpt = torch.load(args.checkpoint, map_location=device)
-    model.load_state_dict(ckpt["model_state_dict"])
-    model.to(device)
-    model.eval()
+        ckpt = torch.load(args.checkpoint, map_location="cpu")
+    reload_model = build_model(num_classes)
+    reload_model.load_state_dict(ckpt["model_state_dict"], strict=True)
+    reload_model.to(device)
+    reload_model.eval()
 
-    y_true, y_pred = collect_val_predictions(model, val_loader, device)
+    y_true, y_pred = collect_val_predictions(reload_model, val_loader, device)
     report = confusion_and_prf(y_true, y_pred, class_names)
 
     metrics = {
@@ -245,7 +274,11 @@ def main() -> None:
         "hyperparams": {
             "batch_size": args.batch_size,
             "lr": args.lr,
+            "backbone_lr": args.lr * args.backbone_lr_factor,
             "weight_decay": args.weight_decay,
+            "label_smoothing": args.label_smoothing,
+            "warmup_epochs": args.warmup_epochs,
+            "unfreeze_blocks": args.unfreeze_blocks,
             "seed": args.seed,
             "device": str(device),
             "early_stop_patience": args.early_stop_patience,

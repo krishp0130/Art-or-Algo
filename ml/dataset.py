@@ -24,20 +24,24 @@ def vit_train_transforms(
     hflip_p: float = 0.5,
     vflip_p: float = 0.5,
 ) -> transforms.Compose:
-    """Augmented pipeline for training: resize/crop to ``size``, flips, rotation, ImageNet normalize."""
+    """Augmented pipeline for training: resize/crop to ``size``, flips, rotation, color jitter, ImageNet normalize."""
     return transforms.Compose(
         [
             transforms.Lambda(_to_rgb),
             transforms.RandomResizedCrop(
                 size,
-                scale=(0.85, 1.0),
-                ratio=(0.9, 1.1),
+                scale=(0.7, 1.0),
+                ratio=(0.85, 1.15),
             ),
             transforms.RandomHorizontalFlip(p=hflip_p),
             transforms.RandomVerticalFlip(p=vflip_p),
             transforms.RandomRotation(degrees=rotation_degrees),
+            transforms.ColorJitter(
+                brightness=0.3, contrast=0.3, saturation=0.2, hue=0.05
+            ),
             transforms.ToTensor(),
             transforms.Normalize(IMAGENET_MEAN, IMAGENET_STD),
+            transforms.RandomErasing(p=0.15, scale=(0.02, 0.15)),
         ]
     )
 

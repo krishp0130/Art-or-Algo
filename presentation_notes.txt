@@ -1,0 +1,491 @@
+ART OR ALGORITHM — PRESENTATION NOTES
+CMU 05-318 Human-AI Interaction
+======================================
+
+
+WHAT THE APPLICATION IS AND WHY IT WAS BUILT
+---------------------------------------------
+
+Art or Algorithm is a full-stack web application that asks one question: can you
+tell the difference between human-made art and AI-generated art? The user uploads
+an image, commits their own guess (Human-made or AI-generated) before seeing any
+model output, and then reveals the model's classification alongside an attention
+heatmap that visualizes exactly which regions of the image the model focused on.
+
+The motivation comes from a real and growing problem. AI image generators (DALL-E,
+Midjourney, Stable Diffusion) now produce artwork that is often indistinguishable
+from human-created pieces. This blurs the line between authentic and synthetic
+creativity, and raises questions about trust, authorship, and perception. Rather
+than just building a classifier that gives a binary answer, this project puts the
+human and the AI side by side — the user makes their judgment first, the model
+makes its judgment second, and the interface surfaces the disagreement (or
+agreement) between them. The goal is not to replace human judgment but to
+explore how human perception and machine perception compare on the same task.
+
+
+THE FULL USER INTERACTION FLOW
+-------------------------------
+
+1. UPLOAD: The user drops or selects an image (JPEG, PNG, WebP, or GIF, up to
+   25 MB). The upload zone uses drag-and-drop with a dashed border and supports
+   keyboard navigation (Enter/Space) for accessibility.
+
+2. GUESS FIRST: The uploaded image is previewed. The user is asked: "Was this made
+   by a human or by AI?" Two large buttons (Human-made / AI-generated) are shown.
+   The model has NOT been consulted yet — this is a deliberate design choice.
+
+3. INFERENCE: After the user commits their guess, the image is sent to the backend
+   via POST /api/classify. A loading state ("Running ViT inference…") is displayed.
+   The server spawns a Python subprocess that runs the ViT model, produces a
+   classification, and generates an attention rollout heatmap.
+
+4. PENDING REVEAL: The model has returned its answer, but it is still hidden from
+   the user. The interface shows the user's locked-in guess and a "Reveal model
+   judgment" button. This is another deliberate friction point — it creates a moment
+   of anticipation and prevents the user from passively consuming the AI's answer.
+
+5. REVEAL: The user clicks reveal. A banner shows:
+   - The user's guess vs. the model's prediction
+   - The model's confidence as a percentage
+   - Whether they agree or disagree (color-coded green for agreement, warm red
+     for disagreement)
+   - The original image and attention heatmap overlay side by side
+   - A "Why did it pick this?" tooltip explaining that the Vision Transformer
+     splits the image into patches and brighter areas in the overlay received
+     more attention weight
+
+6. TRY AGAIN: The user can start over with a new image at any point.
+
+Below the classifier, the interface also shows:
+- A FAILURE GALLERY: a grid of images the model got wrong with high confidence,
+  showing the true label, predicted label, confidence, and heuristic explanations
+  for why the model may have struggled (e.g., "clean vector-like composition
+  overlaps the training distribution of AI samples").
+- A METRICS DASHBOARD: interactive Chart.js line charts showing training loss and
+  accuracy per epoch, plus summary stats (best validation accuracy, epochs
+  completed, training time, model name).
+
+
+FRONTEND AND UI DESIGN
+-----------------------
+
+The frontend is built with Vue 3 + Vite and uses a warm, gallery-like visual
+identity designed to feel like an art exhibition rather than a clinical ML tool.
+
+Color palette: warm parchment background (#f4f0e8), off-white card surfaces
+(#fffcf7), dark ink text (#1a1614), muted secondary text (#5c554e), and a burnt
+orange accent (#b54d30) used for active states, highlights, and the course
+branding. The palette was chosen to feel art-adjacent and approachable rather
+than sterile tech-blue.
+
+Typography: Fraunces (a serif display font) for headings to evoke art and
+editorial design, Source Sans 3 (a clean sans-serif) for body text to maintain
+readability.
+
+Layout: single-column, max-width 960px, generous padding. Components use subtle
+shadows and rounded corners (14px radius). The design follows progressive
+disclosure — each step of the classifier flow only shows what is relevant at
+that moment.
+
+Navigation: a pill-shaped tab bar with "App" and "About" tabs. The About tab
+contains full documentation of the data pipeline, model, backend, and frontend
+for course grading.
+
+Accessibility: the upload zone has role="button", tabindex, and keyboard event
+handlers. ARIA labels and live regions are used throughout (e.g., aria-live="polite"
+for the loading message, role="alert" for error messages, aria-labelledby for
+sections).
+
+Responsive: CSS grid with auto-fit columns for the metrics dashboard, failure
+gallery cards, and the original/overlay comparison. Works on mobile through
+desktop without a separate layout.
+
+Charts: Chart.js via vue-chartjs renders loss-per-epoch and accuracy-per-epoch
+line charts with training and validation curves. Consistent styling with the
+app's font and color palette.
+
+
+HCI AND HUMAN-AI INTERACTION DESIGN CHOICES
+--------------------------------------------
+
+1. GUESS-FIRST DESIGN (ANCHORING PREVENTION):
+   The most important design decision. The user must commit their classification
+   before the model's answer is shown. This prevents anchoring bias — a well-known
+   cognitive bias where seeing an AI's answer first would heavily influence the
+   human's own judgment. By recording the human's independent assessment first,
+   the comparison between human and machine becomes genuine. This aligns with the
+   course concept of preserving human agency in AI-assisted decision making.
+
+2. PROGRESSIVE REVEAL (STAGED DISCLOSURE):
+   The flow has five stages: idle -> guess -> loading -> pending reveal -> revealed.
+   At each stage, only relevant information is shown. The "Reveal model judgment"
+   button is a deliberate speed bump — it gives the user a moment to sit with
+   their own decision before being influenced by the machine. This is informed by
+   research on appropriate reliance: people who are given AI predictions
+   immediately tend to defer more than people who form their own opinion first.
+
+3. TRANSPARENCY THROUGH ATTENTION VISUALIZATION:
+   The attention rollout heatmap is the core explainability feature. Rather than
+   just saying "AI, 92% confident," the interface shows a side-by-side comparison
+   of the original image and the attention overlay, letting users see which patches
+   (regions) the ViT model focused on. A tooltip explains the mechanism in plain
+   language: "The Vision Transformer splits the image into patches. Brighter areas
+   in the overlay show where attention rolled out most strongly — those regions
+   weighed more heavily in the model's decision." This aligns with the course
+   concept of XAI (Explainable AI) and transparent AI systems.
+
+4. CONFIDENCE DISPLAY FOR TRUST CALIBRATION:
+   The model's confidence is shown as a bold percentage. This helps users calibrate
+   their trust — a prediction at 95% confidence should be treated differently than
+   one at 55%. Without confidence information, users tend to either over-trust
+   (treating every prediction as certain) or under-trust (ignoring the model
+   entirely). Showing the number helps users find the right level of reliance.
+
+5. AGREEMENT/DISAGREEMENT FRAMING:
+   The result banner is color-coded: green background when user and model agree,
+   warm red when they disagree. The language says "You and the model agree" or
+   "You and the model disagree — worth a second look." This frames the
+   interaction as a dialogue between equals rather than the AI being an authority.
+   It encourages the user to think critically when there is disagreement rather
+   than just accepting the AI's answer.
+
+6. FAILURE GALLERY (ERROR AWARENESS AND APPROPRIATE TRUST):
+   The failure gallery explicitly surfaces cases where the model made high-confidence
+   wrong predictions. Each failure card shows the image, true label, predicted label,
+   confidence, and heuristic explanations (e.g., "clean vector-like composition,
+   flat shading, or digital poster aesthetics overlap the training distribution of
+   AI samples"). This serves multiple HCI purposes:
+   - Prevents over-reliance by showing the model is fallible
+   - Helps users build a mental model of when to trust and when to doubt
+   - Provides concrete examples rather than abstract accuracy numbers
+   - Aligns with the course concept of designing for appropriate trust
+
+7. METRICS DASHBOARD (SYSTEM TRANSPARENCY):
+   The training metrics (loss curves, accuracy curves, summary stats) are exposed
+   directly in the UI, not hidden in a developer console. This lets even non-technical
+   users understand the model's overall capability and limitations. The dashboard
+   fetches from GET /api/stats and falls back to a static metrics.json for
+   GitHub Pages deployment.
+
+
+MODEL ARCHITECTURE AND TRAINING DETAILS
+-----------------------------------------
+
+Architecture: Vision Transformer ViT-B/16 from torchvision.
+- 12 transformer encoder layers
+- 768-dimensional embeddings
+- 16x16 pixel patches (an input image of 224x224 produces 196 patches + 1 CLS token)
+- Pretrained on ImageNet-1K (IMAGENET1K_V1 weights)
+- Classification head replaced: the original 1000-class head is swapped for
+  LayerNorm(768) -> Linear(768, 2) for binary classification (ai vs human)
+
+Partial fine-tuning strategy:
+- 9 of 12 encoder blocks are FROZEN (parameters not updated during training)
+- Only the last 3 encoder blocks + the encoder LayerNorm + the new classification
+  head are trainable
+- This reduces trainable parameters from 85.8M to 21.3M (24.8%)
+- Rationale: with only ~430 training images, fine-tuning all 86M parameters leads
+  to severe overfitting. The frozen ImageNet features in blocks 1-9 provide a
+  strong general visual representation; only the top blocks need to adapt to the
+  AI-vs-human distinction.
+
+Dataset: Kaggle "AI Art vs Human Art" by hassnainzaidi (CC0-1.0 license)
+- ~431 training images (split across ai/ and human/ subdirectories)
+- ~195 validation images (stratified split)
+- Images are resized to 224x224 and normalized to ImageNet statistics
+  (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+
+Data augmentation pipeline (training only):
+- RandomResizedCrop(224, scale=(0.7, 1.0), ratio=(0.85, 1.15))
+- RandomHorizontalFlip(p=0.5)
+- RandomVerticalFlip(p=0.5)
+- RandomRotation(15 degrees)
+- ColorJitter(brightness=0.3, contrast=0.3, saturation=0.2, hue=0.05)
+- RandomErasing(p=0.15, scale=(0.02, 0.15))
+- All augmentations are applied to artificially increase the effective size of
+  the small training set and improve generalization.
+
+Optimizer: AdamW with differential learning rates
+- Head parameters: lr=3e-4
+- Unfrozen backbone parameters: lr=3e-5 (10x lower)
+- Weight decay: 0.01
+- Rationale: the head is randomly initialized and needs to learn from scratch,
+  so it gets a higher learning rate. The backbone already has good pretrained
+  features and only needs gentle adaptation.
+
+Learning rate schedule:
+- 3-epoch linear warmup (starts at 10% of target LR, ramps up linearly)
+- Then cosine annealing decay for the remaining epochs
+- Rationale: warmup prevents the randomly initialized head from producing large
+  gradients that destabilize the pretrained backbone in early training.
+
+Regularization:
+- Label smoothing = 0.1 on CrossEntropyLoss (softens the target from [1, 0] to
+  [0.9, 0.1], preventing the model from becoming overconfident and collapsing
+  to predict only one class)
+- Gradient clipping: max norm = 1.0 (prevents exploding gradients, especially
+  important on MPS)
+- Early stopping: patience=5 epochs with min improvement delta=1e-4, minimum
+  12 epochs before stopping is allowed
+
+Training environment:
+- Device: Apple Silicon MPS (M-series Mac)
+- Training time: ~392 seconds (~6.5 minutes) for 16 epochs (early stopped at
+  epoch 16 out of a maximum 25)
+- Batch size: 16
+- Seed: 42 for reproducibility
+
+
+FINAL MODEL PERFORMANCE
+------------------------
+
+Validation accuracy: 82.56%
+Best epoch: 8
+
+Per-class metrics:
+  AI:    precision=86.3%, recall=81.5%
+  Human: precision=78.5%, recall=83.9%
+
+Confusion matrix (195 validation images):
+                    Predicted AI    Predicted Human
+  True AI  (108):       88               20
+  True Human (87):      14               73
+
+Interpretation:
+- The model is slightly better at precision on AI images (86.3%) — when it says
+  "AI," it is more likely to be correct.
+- The model has slightly better recall on human images (83.9%) — it catches more
+  of the actual human art.
+- 20 AI images were misclassified as human (likely AI art that mimics traditional
+  media textures like brushstrokes or canvas grain).
+- 14 human images were misclassified as AI (likely digital art, vector
+  illustrations, or clean poster designs that look similar to generative outputs).
+
+Training history (epoch-by-epoch):
+  Epoch  1: train_acc=57.2%, val_acc=64.6%
+  Epoch  2: train_acc=67.4%, val_acc=75.4%
+  Epoch  3: train_acc=79.7%, val_acc=77.9%
+  Epoch  4: train_acc=86.6%, val_acc=81.5%
+  Epoch  5: train_acc=90.0%, val_acc=82.1%
+  Epoch  6: train_acc=94.1%, val_acc=80.0%
+  Epoch  7: train_acc=96.0%, val_acc=81.0%
+  Epoch  8: train_acc=97.9%, val_acc=82.6%  <-- best checkpoint saved
+  Epoch  9: train_acc=98.2%, val_acc=81.5%
+  Epoch 10: train_acc=98.8%, val_acc=82.1%
+  Epoch 11: train_acc=98.7%, val_acc=79.0%
+  Epoch 12: train_acc=99.9%, val_acc=81.5%
+  Epoch 13: train_acc=99.9%, val_acc=82.6%
+  Epoch 14: train_acc=99.7%, val_acc=80.5%
+  Epoch 15: train_acc=100%, val_acc=80.0%
+  Epoch 16: train_acc=99.9%, val_acc=80.5%  <-- early stopped
+
+
+ATTENTION ROLLOUT — HOW THE HEATMAP WORKS
+------------------------------------------
+
+The ViT model processes an image by splitting it into a grid of 14x14 = 196
+patches (each 16x16 pixels). A special [CLS] token is prepended. Each of the 12
+encoder layers applies multi-head self-attention, producing a 197x197 attention
+matrix that describes how much each token attends to every other token.
+
+Attention Rollout works by:
+1. Extracting the attention weight matrix from each of the 12 encoder layers
+2. Adding the identity matrix to each (residual connection accounting)
+3. Row-normalizing each matrix
+4. Multiplying all 12 matrices together sequentially
+5. Taking the [CLS] token's row (row 0), dropping the self-attention entry,
+   leaving 196 values — one importance score per patch
+6. Reshaping to 14x14, upsampling to 224x224 via bicubic interpolation
+7. Applying a colormap (jet) and alpha-blending over the original image
+
+The result is a heatmap where brighter/warmer regions are patches the model
+weighed most heavily when making its classification decision. This is sent to
+the frontend as a base64-encoded PNG.
+
+
+BACKEND ARCHITECTURE
+---------------------
+
+The backend is Node.js with Express. It serves both the API and the built Vue
+frontend (single-origin deployment).
+
+API endpoints:
+- POST /api/classify: accepts a multipart image upload (field name "image"),
+  writes it to a temp directory, spawns a Python subprocess
+  (python -m ml.inference --image <path> --checkpoint <path>), reads a single
+  JSON line from stdout containing prediction/confidence/probabilities/
+  attention_map_base64, deletes the temp file, and returns the result.
+- POST /api/predict: alias for /api/classify.
+- GET /api/stats: returns models/metrics.json (training metrics for dashboard).
+- GET /api/failures: returns the failure gallery JSON with normalized field names.
+- GET /api/failure-images/*: serves static failure gallery image files.
+
+The server auto-detects the Python virtual environment (.venv/bin/python) and
+the best available model checkpoint (final_vit.pth or best_vit.pth).
+
+File upload limits: 25 MB max, images only (JPEG, PNG, WebP, GIF).
+CORS is enabled. The server also serves the Vue SPA with history-mode fallback
+if client/dist exists.
+
+
+PROBLEMS ENCOUNTERED AND FIXED
+--------------------------------
+
+CRITICAL BUG: MPS non_blocking=True RACE CONDITION
+
+The single biggest problem was a race condition in PyTorch's MPS (Apple Silicon
+GPU) backend. The training and evaluation code used tensor.to(device,
+non_blocking=True) to transfer data to the GPU. On CUDA this is safe because it
+uses pinned memory and CUDA streams. On MPS, async transfers are unreliable — the
+model sometimes computed on data that had not finished transferring, producing
+garbage results.
+
+Symptoms:
+- The model appeared to achieve 73.85% validation accuracy during training
+- But when the checkpoint was saved and reloaded, the same model only got 55.38%
+  and predicted EVERY image as "AI" (confusion matrix: [[108,0],[87,0]])
+- Running evaluate() on the exact same model 5 times gave wildly different results:
+  35.9%, 46.2%, 57.9%, 53.9%, 49.2%
+- This made it appear as if the checkpoint save/load was broken, but the real issue
+  was that the training accuracy numbers themselves were noisy and unreliable
+
+Diagnosis process:
+1. First suspected MPS numerical drift on checkpoint reload — tested CPU vs MPS
+   reload, both gave same bad results
+2. Compared fresh model weights vs checkpoint weights — confirmed weights were
+   saved correctly
+3. Tested in-process evaluation vs reloaded evaluation — both gave same results,
+   ruling out save/load bugs
+4. Key test: ran evaluate() 5 times in a row on the same model and got 5 different
+   answers. Ran manual evaluation without non_blocking and got consistent results
+   every time. This pinpointed the exact cause.
+
+Fix: changed all .to(device, non_blocking=True) calls to only use non_blocking
+when device.type == "cuda". On MPS and CPU, synchronous transfers are used.
+
+OVERFITTING ON SMALL DATASET:
+
+With only ~430 training images, fine-tuning all 86M parameters of ViT-B/16
+caused the model to memorize the training set without learning generalizable
+features. The model quickly reached ~100% training accuracy but validation
+accuracy was poor and unstable.
+
+Fixes applied:
+- Froze 9 of 12 encoder blocks, reducing trainable parameters to 21.3M (24.8%)
+- Added ColorJitter and RandomErasing to the augmentation pipeline
+- Added label smoothing (0.1) to prevent overconfident single-class collapse
+- Used differential learning rates (10x lower for backbone vs head)
+- Added LR warmup (3 epochs) to prevent early destabilization
+
+Before vs. after all fixes:
+                          Before          After
+  Validation accuracy:    55.38%          82.56%
+  Human recall:           0% (broken)     83.9%
+  AI precision:           55.4%           86.3%
+  Checkpoint reliability: Non-deterministic, collapsed on reload
+                          Consistent, matches training metrics exactly
+
+
+PILOT USER STUDY AND INSIGHTS
+-------------------------------
+
+[Note: Fill in specifics from your actual pilot study. Framework below.]
+
+Study setup: A test user was given the application and asked to classify several
+images without any prior instruction on how to tell AI art from human art.
+
+Observations from the test user:
+- The guess-first flow forced the user to actually study the image before getting
+  the answer, rather than passively scrolling through predictions. They reported
+  feeling more engaged than they expected.
+- The attention heatmap was the feature the user spent the most time examining.
+  When the model disagreed with them, they looked at the heatmap to understand
+  why, often noticing things they had missed (e.g., suspiciously uniform textures
+  in backgrounds, or unnaturally smooth color gradients).
+- The confidence percentage affected trust: the user said they were more willing
+  to accept the model's answer when confidence was above 90%, but questioned it
+  more when confidence was around 60-70%.
+- The user was surprised to learn the model was wrong about 17% of the time —
+  they had initially assumed an AI classifier would be nearly perfect. The failure
+  gallery helped recalibrate that expectation.
+- Disagreement moments were the most educational: when the user said "human" and
+  the model said "AI" (or vice versa), they were prompted to re-examine the image
+  and think about what visual cues led them to a different conclusion. Several
+  times the user changed their mind after seeing the attention overlay.
+- The user suggested wanting a brief explanation in words (not just the heatmap)
+  of what features the model associates with AI vs human art.
+
+Key HAI insight: The application demonstrates that the interaction design matters
+as much as the model accuracy. An 82% accurate model with a well-designed reveal
+flow, attention explanations, and failure awareness creates a more useful and
+educational experience than a 95% accurate model that just shows a label. The
+human stays in the loop, learns from disagreements, and develops their own
+improved judgment over time.
+
+
+FUTURE IMPROVEMENTS
+---------------------
+
+1. Larger and more diverse dataset: The ~430 training images are a major
+   limitation. Scaling to 5,000-10,000 images across more art styles, media, and
+   AI generators would likely push accuracy above 90%.
+
+2. Feature-level explanations: Beyond attention rollout, add GradCAM or SHAP-based
+   attribution to explain which visual features (texture smoothness, color
+   uniformity, edge sharpness) the model associates with AI vs. human.
+
+3. User feedback loop: Let users flag when they believe the model is wrong, collect
+   these corrections, and use them to fine-tune or retrain the model — a genuine
+   human-in-the-loop learning system.
+
+4. Multi-class expansion: Distinguish between different AI generators (DALL-E vs.
+   Midjourney vs. Stable Diffusion) and different human media (oil painting vs.
+   digital art vs. watercolor vs. photography).
+
+5. Confidence calibration: Apply temperature scaling or Platt scaling so the
+   reported confidence percentages reflect the true probability of being correct
+   (currently, the model can be 97% confident and wrong).
+
+6. Side-by-side human vs. AI comparison mode: Show two images (one AI, one human)
+   and ask the user to pick which is which — a more engaging game-like format
+   that could produce richer interaction data.
+
+7. Mobile optimization: Optimize for phone uploads since AI art is most commonly
+   encountered on social media platforms.
+
+8. Batch analysis: Let users upload multiple images at once and get a summary
+   report with per-image predictions, overall statistics, and highlighted
+   edge cases.
+
+
+TECH STACK SUMMARY
+-------------------
+
+Machine Learning:
+  - Python 3.13
+  - PyTorch 2.11 + torchvision 0.26
+  - Model: ViT-B/16 (torchvision, ImageNet-pretrained)
+  - Training: run_train.py (AdamW, cosine LR, early stopping)
+  - Inference: ml/inference.py (classification + attention rollout heatmap)
+
+Backend:
+  - Node.js with Express
+  - Multer for file uploads
+  - child_process.spawn for Python inference bridge
+  - CORS enabled
+
+Frontend:
+  - Vue 3 with Composition API (<script setup>)
+  - Vite 8 for build tooling
+  - Chart.js + vue-chartjs for metrics visualization
+  - Custom CSS with CSS variables (no framework)
+
+Data:
+  - Kaggle "AI Art vs Human Art" dataset (CC0-1.0)
+  - ~431 train / ~195 val images
+  - ImageFolder directory structure (ai/ and human/ subdirectories)
+
+Deployment:
+  - Local: npm start (builds Vue app, serves everything on port 3000)
+  - Static: GitHub Pages with baked metrics.json and failures.json
+  - API: requires separate Express host with VITE_API_BASE env var

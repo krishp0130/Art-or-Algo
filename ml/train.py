@@ -33,7 +33,7 @@ def pick_device(prefer: str | None) -> torch.device:
     return torch.device("cpu")
 
 
-def build_model(num_classes: int) -> nn.Module:
+def build_model(num_classes: int, *, unfreeze_last_n_blocks: int = 0) -> nn.Module:
     weights = ViT_B_16_Weights.IMAGENET1K_V1
     model = vit_b_16(weights=weights)
     dim = model.hidden_dim
@@ -41,6 +41,19 @@ def build_model(num_classes: int) -> nn.Module:
         nn.LayerNorm(dim, eps=1e-6),
         nn.Linear(dim, num_classes),
     )
+
+    if unfreeze_last_n_blocks > 0:
+        for p in model.parameters():
+            p.requires_grad = False
+        for p in model.heads.parameters():
+            p.requires_grad = True
+        for p in model.encoder.ln.parameters():
+            p.requires_grad = True
+        blocks = list(model.encoder.layers)
+        for block in blocks[-unfreeze_last_n_blocks:]:
+            for p in block.parameters():
+                p.requires_grad = True
+
     return model
 
 
@@ -52,12 +65,13 @@ def evaluate(
     device: torch.device,
 ) -> tuple[float, float]:
     model.eval()
+    nb = device.type == "cuda"
     total_loss = 0.0
     correct = 0
     total = 0
     for images, targets in loader:
-        images = images.to(device, non_blocking=True)
-        targets = targets.to(device, non_blocking=True)
+        images = images.to(device, non_blocking=nb)
+        targets = targets.to(device, non_blocking=nb)
         logits = model(images)
         loss = criterion(logits, targets)
         total_loss += loss.item() * images.size(0)
@@ -75,26 +89,33 @@ def train_one_epoch(
     device: torch.device,
     scaler: torch.amp.GradScaler | None,
     use_amp: bool,
+    max_grad_norm: float | None = 1.0,
 ) -> tuple[float, float]:
     model.train()
+    nb = device.type == "cuda"
     total_loss = 0.0
     correct = 0
     total = 0
     for images, targets in loader:
-        images = images.to(device, non_blocking=True)
-        targets = targets.to(device, non_blocking=True)
+        images = images.to(device, non_blocking=nb)
+        targets = targets.to(device, non_blocking=nb)
         optimizer.zero_grad(set_to_none=True)
         if use_amp and scaler is not None:
             with torch.amp.autocast("cuda"):
                 logits = model(images)
                 loss = criterion(logits, targets)
             scaler.scale(loss).backward()
+            if max_grad_norm is not None:
+                scaler.unscale_(optimizer)
+                nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
             scaler.step(optimizer)
             scaler.update()
         else:
             logits = model(images)
             loss = criterion(logits, targets)
             loss.backward()
+            if max_grad_norm is not None:
+                nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
             optimizer.step()
 
         total_loss += loss.item() * images.size(0)

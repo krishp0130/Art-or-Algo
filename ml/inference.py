@@ -358,6 +358,7 @@ def predict_json_for_backend(
         "label_id": pred["label_id"],
         "probabilities": pred["probabilities"],
         "attention_map_base64": b64,
+        "rollout_mode": rollout_mode,
     }
 
 
