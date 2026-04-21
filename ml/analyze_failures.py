@@ -171,7 +171,7 @@ def main() -> None:
     with torch.no_grad():
         base = 0
         for xb, yb in loader:
-            xb = xb.to(device, non_blocking=True)
+            xb = xb.to(device, non_blocking=device.type == "cuda")
             logits = session.model(xb)
             probs = torch.softmax(logits, dim=1)
             preds = probs.argmax(dim=1)
