@@ -1,84 +1,153 @@
 {
-  "generated_at_utc": "2026-03-30T17:59:10.527643+00:00",
+  "generated_at_utc": "2026-04-21T13:54:44.932354+00:00",
   "checkpoint": "/Users/krishpatel/CMU/05318/Art or Algorithm/models/final_vit.pth",
   "validation_dir": "/Users/krishpatel/CMU/05318/Art or Algorithm/data/val",
-  "confidence_threshold_wrong_class": 0.9,
-  "failure_count": 87,
+  "confidence_threshold_wrong_class": 0.7,
+  "failure_count": 18,
   "failures": [
     {
-      "filename": "000_truehuman_predai_p0.979_-Skills-Promo-A-Total-Artist-All-of-North-Wests-Impressive-Drawings-Phot.jpg",
-      "public_url_path": "/failures/000_truehuman_predai_p0.979_-Skills-Promo-A-Total-Artist-All-of-North-Wests-Impressive-Drawings-Phot.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978744,
+      "filename": "000_trueai_predhuman_p0.892_100960167.jpg.jpg",
+      "public_url_path": "/failures/000_trueai_predhuman_p0.892_100960167.jpg.jpg",
+      "true_label": "ai",
+      "predicted_label": "human",
+      "confidence_in_predicted_class": 0.892232,
       "probabilities": {
-        "ai": 0.9787437319755554,
-        "human": 0.021256254985928535
+        "ai": 0.10776784271001816,
+        "human": 0.8922321796417236
       },
       "why_the_model_may_have_struggled": [
-        "Geometry: 1529×2000px, aspect ratio 0.76. Laplacian variance ≈ 104.9 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 56.1 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
+        "Geometry: 720×1280px, aspect ratio 0.56. Laplacian variance ≈ 208.0 (proxy for fine detail / sharpness).",
+        "Color spread (mean BGR channel std) ≈ 48.7 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
+        "Possible failure story: brushy strokes, noise, or traditional-media mimicry in AI outputs overlap human-art texture statistics the model relied on."
       ]
     },
     {
-      "filename": "001_truehuman_predai_p0.976_.amazonaws.com2Fpublic2Fimages2Fcb32a00a-bf52-48fe-9ba6-4e21cf4c1c57_800.png",
-      "public_url_path": "/failures/001_truehuman_predai_p0.976_.amazonaws.com2Fpublic2Fimages2Fcb32a00a-bf52-48fe-9ba6-4e21cf4c1c57_800.png",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.97597,
+      "filename": "001_trueai_predhuman_p0.784_8A9FC0D0-D02D-4909-8E7B90874F98DBF2_source.jpg.jpg",
+      "public_url_path": "/failures/001_trueai_predhuman_p0.784_8A9FC0D0-D02D-4909-8E7B90874F98DBF2_source.jpg.jpg",
+      "true_label": "ai",
+      "predicted_label": "human",
+      "confidence_in_predicted_class": 0.783907,
       "probabilities": {
-        "ai": 0.9759701490402222,
-        "human": 0.024029886350035667
+        "ai": 0.21609286963939667,
+        "human": 0.7839071154594421
       },
       "why_the_model_may_have_struggled": [
-        "Geometry: 800×800px, aspect ratio 1.00. Laplacian variance ≈ 389.8 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 54.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
+        "Geometry: 1536×1331px, aspect ratio 1.15. Laplacian variance ≈ 634.5 (proxy for fine detail / sharpness).",
+        "Color spread (mean BGR channel std) ≈ 46.7 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
         "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
+        "Possible failure story: brushy strokes, noise, or traditional-media mimicry in AI outputs overlap human-art texture statistics the model relied on."
       ]
     },
     {
-      "filename": "002_truehuman_predai_p0.977_1013032_credit_wspa-jiri_rezac.jpg.jpg",
-      "public_url_path": "/failures/002_truehuman_predai_p0.977_1013032_credit_wspa-jiri_rezac.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.97675,
+      "filename": "002_trueai_predhuman_p0.867_Animals04april2023.jpg.jpg",
+      "public_url_path": "/failures/002_trueai_predhuman_p0.867_Animals04april2023.jpg.jpg",
+      "true_label": "ai",
+      "predicted_label": "human",
+      "confidence_in_predicted_class": 0.866992,
       "probabilities": {
-        "ai": 0.9767499566078186,
-        "human": 0.023250089958310127
+        "ai": 0.13300833106040955,
+        "human": 0.8669916391372681
       },
       "why_the_model_may_have_struggled": [
-        "Geometry: 2184×1454px, aspect ratio 1.50. Laplacian variance ≈ 121.6 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 49.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
+        "Geometry: 594×404px, aspect ratio 1.47. Laplacian variance ≈ 2538.9 (proxy for fine detail / sharpness).",
+        "Color spread (mean BGR channel std) ≈ 52.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
+        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
+        "Possible failure story: brushy strokes, noise, or traditional-media mimicry in AI outputs overlap human-art texture statistics the model relied on."
       ]
     },
     {
-      "filename": "003_truehuman_predai_p0.977_161104185136-kelvin-okafor-hyper-real.jpg.jpg",
-      "public_url_path": "/failures/003_truehuman_predai_p0.977_161104185136-kelvin-okafor-hyper-real.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977459,
+      "filename": "003_trueai_predhuman_p0.944_Bu69yrI45ueNWQX84ap5.jpg.jpg",
+      "public_url_path": "/failures/003_trueai_predhuman_p0.944_Bu69yrI45ueNWQX84ap5.jpg.jpg",
+      "true_label": "ai",
+      "predicted_label": "human",
+      "confidence_in_predicted_class": 0.94403,
       "probabilities": {
-        "ai": 0.9774591326713562,
-        "human": 0.02254081703722477
+        "ai": 0.05597027391195297,
+        "human": 0.944029688835144
       },
       "why_the_model_may_have_struggled": [
-        "Geometry: 800×1071px, aspect ratio 0.75. Laplacian variance ≈ 180.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 65.1 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
+        "Geometry: 1024×768px, aspect ratio 1.33. Laplacian variance ≈ 351.3 (proxy for fine detail / sharpness).",
+        "Color spread (mean BGR channel std) ≈ 63.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
+        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
+        "Possible failure story: brushy strokes, noise, or traditional-media mimicry in AI outputs overlap human-art texture statistics the model relied on."
       ]
     },
     {
-      "filename": "004_truehuman_predai_p0.976_172711.jpg.jpg",
-      "public_url_path": "/failures/004_truehuman_predai_p0.976_172711.jpg.jpg",
+      "filename": "004_trueai_predhuman_p0.819_Dave-McKean-3.jpeg.jpeg",
+      "public_url_path": "/failures/004_trueai_predhuman_p0.819_Dave-McKean-3.jpeg.jpeg",
+      "true_label": "ai",
+      "predicted_label": "human",
+      "confidence_in_predicted_class": 0.818999,
+      "probabilities": {
+        "ai": 0.18100063502788544,
+        "human": 0.8189994096755981
+      },
+      "why_the_model_may_have_struggled": [
+        "Geometry: 2048×1536px, aspect ratio 1.33. Laplacian variance ≈ 32.3 (proxy for fine detail / sharpness).",
+        "Color spread (mean BGR channel std) ≈ 51.9 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
+        "HCI angle: very smooth, low-detail regions are a cue the model often associates with generative art; minimalist human work can be unfairly pulled toward 'AI'.",
+        "Possible failure story: brushy strokes, noise, or traditional-media mimicry in AI outputs overlap human-art texture statistics the model relied on."
+      ]
+    },
+    {
+      "filename": "005_trueai_predhuman_p0.820_Julian-van-Dieken_A-Girl-With-Glowing-Earrings-.png.png",
+      "public_url_path": "/failures/005_trueai_predhuman_p0.820_Julian-van-Dieken_A-Girl-With-Glowing-Earrings-.png.png",
+      "true_label": "ai",
+      "predicted_label": "human",
+      "confidence_in_predicted_class": 0.819978,
+      "probabilities": {
+        "ai": 0.18002185225486755,
+        "human": 0.8199781775474548
+      },
+      "why_the_model_may_have_struggled": [
+        "Geometry: 652×815px, aspect ratio 0.80. Laplacian variance ≈ 132.6 (proxy for fine detail / sharpness).",
+        "Color spread (mean BGR channel std) ≈ 57.8 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
+        "Possible failure story: brushy strokes, noise, or traditional-media mimicry in AI outputs overlap human-art texture statistics the model relied on."
+      ]
+    },
+    {
+      "filename": "006_trueai_predhuman_p0.894_ai-generated-8247695_1280.jpg.jpg",
+      "public_url_path": "/failures/006_trueai_predhuman_p0.894_ai-generated-8247695_1280.jpg.jpg",
+      "true_label": "ai",
+      "predicted_label": "human",
+      "confidence_in_predicted_class": 0.894141,
+      "probabilities": {
+        "ai": 0.10585933923721313,
+        "human": 0.8941406607627869
+      },
+      "why_the_model_may_have_struggled": [
+        "Geometry: 853×1280px, aspect ratio 0.67. Laplacian variance ≈ 690.2 (proxy for fine detail / sharpness).",
+        "Color spread (mean BGR channel std) ≈ 48.6 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
+        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
+        "Possible failure story: brushy strokes, noise, or traditional-media mimicry in AI outputs overlap human-art texture statistics the model relied on."
+      ]
+    },
+    {
+      "filename": "007_trueai_predhuman_p0.870_robot-monitoring-dairy-farm-1200x800-1.jpg.jpg",
+      "public_url_path": "/failures/007_trueai_predhuman_p0.870_robot-monitoring-dairy-farm-1200x800-1.jpg.jpg",
+      "true_label": "ai",
+      "predicted_label": "human",
+      "confidence_in_predicted_class": 0.870492,
+      "probabilities": {
+        "ai": 0.1295083910226822,
+        "human": 0.8704915642738342
+      },
+      "why_the_model_may_have_struggled": [
+        "Geometry: 1200×800px, aspect ratio 1.50. Laplacian variance ≈ 674.5 (proxy for fine detail / sharpness).",
+        "Color spread (mean BGR channel std) ≈ 72.9 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
+        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
+        "Possible failure story: brushy strokes, noise, or traditional-media mimicry in AI outputs overlap human-art texture statistics the model relied on."
+      ]
+    },
+    {
+      "filename": "008_truehuman_predai_p0.970_172711.jpg.jpg",
+      "public_url_path": "/failures/008_truehuman_predai_p0.970_172711.jpg.jpg",
       "true_label": "human",
       "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.976077,
+      "confidence_in_predicted_class": 0.970257,
       "probabilities": {
-        "ai": 0.9760766625404358,
-        "human": 0.02392331138253212
+        "ai": 0.970256507396698,
+        "human": 0.029743487015366554
       },
       "why_the_model_may_have_struggled": [
         "Geometry: 867×1300px, aspect ratio 0.67. Laplacian variance ≈ 5086.7 (proxy for fine detail / sharpness).",
@@ -88,300 +157,14 @@
       ]
     },
     {
-      "filename": "005_truehuman_predai_p0.980_20230807-ashleyfortner-002-asian-elephant-trong-nhi-linh-teaser.jpg.jpg",
-      "public_url_path": "/failures/005_truehuman_predai_p0.980_20230807-ashleyfortner-002-asian-elephant-trong-nhi-linh-teaser.jpg.jpg",
+      "filename": "009_truehuman_predai_p0.917_Fschl-Eric_TrumpMug.jpg.jpg",
+      "public_url_path": "/failures/009_truehuman_predai_p0.917_Fschl-Eric_TrumpMug.jpg.jpg",
       "true_label": "human",
       "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979626,
+      "confidence_in_predicted_class": 0.916673,
       "probabilities": {
-        "ai": 0.9796262383460999,
-        "human": 0.020373784005641937
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1300×650px, aspect ratio 2.00. Laplacian variance ≈ 1188.4 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 63.7 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "006_truehuman_predai_p0.982_26713309_web1_M-Rob-Schouten-edh-211007.jpg.jpg",
-      "public_url_path": "/failures/006_truehuman_predai_p0.982_26713309_web1_M-Rob-Schouten-edh-211007.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.981553,
-      "probabilities": {
-        "ai": 0.9815531969070435,
-        "human": 0.018446801230311394
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1280×850px, aspect ratio 1.51. Laplacian variance ≈ 6021.0 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 53.8 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "007_truehuman_predai_p0.977_3-self-portraits-by-zanele-muholi.jpg.jpg",
-      "public_url_path": "/failures/007_truehuman_predai_p0.977_3-self-portraits-by-zanele-muholi.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.976734,
-      "probabilities": {
-        "ai": 0.9767335653305054,
-        "human": 0.023266378790140152
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1200×690px, aspect ratio 1.74. Laplacian variance ≈ 1469.2 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 81.5 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "008_truehuman_predai_p0.979_360_F_380747975_sS1hCVB0qPqFCWBMZ3qJ5xTqH6rtaDBI.jpg.jpg",
-      "public_url_path": "/failures/008_truehuman_predai_p0.979_360_F_380747975_sS1hCVB0qPqFCWBMZ3qJ5xTqH6rtaDBI.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978552,
-      "probabilities": {
-        "ai": 0.9785522818565369,
-        "human": 0.02144777961075306
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 539×360px, aspect ratio 1.50. Laplacian variance ≈ 452.6 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 53.6 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "009_truehuman_predai_p0.978_4a092cb31ce8d11f8ca53137d86c276f.jpg.jpg",
-      "public_url_path": "/failures/009_truehuman_predai_p0.978_4a092cb31ce8d11f8ca53137d86c276f.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978008,
-      "probabilities": {
-        "ai": 0.978007972240448,
-        "human": 0.021992098540067673
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 480×360px, aspect ratio 1.33. Laplacian variance ≈ 2997.1 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 85.8 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "010_truehuman_predai_p0.979_63l8iooc5eobpz5bjjc6ig.jpg.jpg",
-      "public_url_path": "/failures/010_truehuman_predai_p0.979_63l8iooc5eobpz5bjjc6ig.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978683,
-      "probabilities": {
-        "ai": 0.9786825180053711,
-        "human": 0.021317506209015846
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1840×1040px, aspect ratio 1.77. Laplacian variance ≈ 105.4 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 66.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "011_truehuman_predai_p0.976_7917317-HSC00923-7.jpg.jpg",
-      "public_url_path": "/failures/011_truehuman_predai_p0.976_7917317-HSC00923-7.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.976077,
-      "probabilities": {
-        "ai": 0.9760773777961731,
-        "human": 0.023922597989439964
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 770×792px, aspect ratio 0.97. Laplacian variance ≈ 2526.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 67.7 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "012_truehuman_predai_p0.982_812EtDiEY9L._AC_UF10001000_QL80_.jpg.jpg",
-      "public_url_path": "/failures/012_truehuman_predai_p0.982_812EtDiEY9L._AC_UF10001000_QL80_.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.981883,
-      "probabilities": {
-        "ai": 0.98188316822052,
-        "human": 0.018116848543286324
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 834×1000px, aspect ratio 0.83. Laplacian variance ≈ 3604.3 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 62.8 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "013_truehuman_predai_p0.981_85120553.jpg.jpg",
-      "public_url_path": "/failures/013_truehuman_predai_p0.981_85120553.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.981156,
-      "probabilities": {
-        "ai": 0.9811556339263916,
-        "human": 0.018844345584511757
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2500×1674px, aspect ratio 1.49. Laplacian variance ≈ 82.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 50.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "014_truehuman_predai_p0.977_99050588b2b7c5aaa581c808c1b687c6.jpg.jpg",
-      "public_url_path": "/failures/014_truehuman_predai_p0.977_99050588b2b7c5aaa581c808c1b687c6.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.976542,
-      "probabilities": {
-        "ai": 0.9765419960021973,
-        "human": 0.02345803752541542
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 236×314px, aspect ratio 0.75. Laplacian variance ≈ 347.0 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 60.9 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "015_truehuman_predai_p0.977_A142xwh4GVL._AC_UF8941000_QL80_.jpg.jpg",
-      "public_url_path": "/failures/015_truehuman_predai_p0.977_A142xwh4GVL._AC_UF8941000_QL80_.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977084,
-      "probabilities": {
-        "ai": 0.9770837426185608,
-        "human": 0.022916261106729507
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 894×709px, aspect ratio 1.26. Laplacian variance ≈ 14843.3 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 74.1 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "016_truehuman_predai_p0.980_AdobeStock_502229899.jpeg.jpeg",
-      "public_url_path": "/failures/016_truehuman_predai_p0.980_AdobeStock_502229899.jpeg.jpeg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.980307,
-      "probabilities": {
-        "ai": 0.9803065061569214,
-        "human": 0.019693491980433464
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 3200×1800px, aspect ratio 1.78. Laplacian variance ≈ 590.2 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 67.7 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "017_truehuman_predai_p0.980_Ballerina2030909_36x30_3.jpg.jpg",
-      "public_url_path": "/failures/017_truehuman_predai_p0.980_Ballerina2030909_36x30_3.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979986,
-      "probabilities": {
-        "ai": 0.9799864888191223,
-        "human": 0.02001352794468403
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 700×700px, aspect ratio 1.00. Laplacian variance ≈ 306.1 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 52.6 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "018_truehuman_predai_p0.981_Bluebirdprojectpainting.jpg.jpg",
-      "public_url_path": "/failures/018_truehuman_predai_p0.981_Bluebirdprojectpainting.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.981417,
-      "probabilities": {
-        "ai": 0.9814172387123108,
-        "human": 0.018582746386528015
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2815×2550px, aspect ratio 1.10. Laplacian variance ≈ 77.3 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 59.3 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: very smooth, low-detail regions are a cue the model often associates with generative art; minimalist human work can be unfairly pulled toward 'AI'.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "019_truehuman_predai_p0.978_Captive-lion-hero-C2A9-George-Logan.jpg.jpg",
-      "public_url_path": "/failures/019_truehuman_predai_p0.978_Captive-lion-hero-C2A9-George-Logan.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978159,
-      "probabilities": {
-        "ai": 0.9781591892242432,
-        "human": 0.02184077724814415
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1920×1080px, aspect ratio 1.78. Laplacian variance ≈ 1973.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 59.1 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "020_truehuman_predai_p0.977_Chris-Pratt.jpg.jpg",
-      "public_url_path": "/failures/020_truehuman_predai_p0.977_Chris-Pratt.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977496,
-      "probabilities": {
-        "ai": 0.9774962663650513,
-        "human": 0.022503726184368134
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2048×1536px, aspect ratio 1.33. Laplacian variance ≈ 98.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 56.8 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "021_truehuman_predai_p0.978_EPhE1HGU4AAwAdO.jpg.jpg",
-      "public_url_path": "/failures/021_truehuman_predai_p0.978_EPhE1HGU4AAwAdO.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977926,
-      "probabilities": {
-        "ai": 0.9779257774353027,
-        "human": 0.022074274718761444
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1200×675px, aspect ratio 1.78. Laplacian variance ≈ 738.4 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 77.7 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "022_truehuman_predai_p0.982_Fschl-Eric_TrumpMug.jpg.jpg",
-      "public_url_path": "/failures/022_truehuman_predai_p0.982_Fschl-Eric_TrumpMug.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.981746,
-      "probabilities": {
-        "ai": 0.9817455410957336,
-        "human": 0.018254509195685387
+        "ai": 0.9166730642318726,
+        "human": 0.08332695811986923
       },
       "why_the_model_may_have_struggled": [
         "Geometry: 1280×960px, aspect ratio 1.33. Laplacian variance ≈ 427.2 (proxy for fine detail / sharpness).",
@@ -391,97 +174,14 @@
       ]
     },
     {
-      "filename": "023_truehuman_predai_p0.979_G2_231208_TianTian.jpg.jpg",
-      "public_url_path": "/failures/023_truehuman_predai_p0.979_G2_231208_TianTian.jpg.jpg",
+      "filename": "010_truehuman_predai_p0.760_PaintingBBR147_1.jpg.jpg",
+      "public_url_path": "/failures/010_truehuman_predai_p0.760_PaintingBBR147_1.jpg.jpg",
       "true_label": "human",
       "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.97927,
+      "confidence_in_predicted_class": 0.760441,
       "probabilities": {
-        "ai": 0.9792702198028564,
-        "human": 0.020729755982756615
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1920×1280px, aspect ratio 1.50. Laplacian variance ≈ 5175.6 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 55.9 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "024_truehuman_predai_p0.979_Gen-AI-Community-Forum_NC_Header.jpg.jpg",
-      "public_url_path": "/failures/024_truehuman_predai_p0.979_Gen-AI-Community-Forum_NC_Header.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979449,
-      "probabilities": {
-        "ai": 0.9794486165046692,
-        "human": 0.02055143564939499
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 3840×2160px, aspect ratio 1.78. Laplacian variance ≈ 105.1 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 69.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "025_truehuman_predai_p0.978_Land-Animals-Featured-841x1024.png.png",
-      "public_url_path": "/failures/025_truehuman_predai_p0.978_Land-Animals-Featured-841x1024.png.png",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978488,
-      "probabilities": {
-        "ai": 0.9784879088401794,
-        "human": 0.02151207998394966
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 841×1024px, aspect ratio 0.82. Laplacian variance ≈ 732.4 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 91.7 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "026_truehuman_predai_p0.979_Mali_-_Bozo_girl_in_Bamako.jpg.jpg",
-      "public_url_path": "/failures/026_truehuman_predai_p0.979_Mali_-_Bozo_girl_in_Bamako.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978678,
-      "probabilities": {
-        "ai": 0.9786777496337891,
-        "human": 0.02132228948175907
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2336×3504px, aspect ratio 0.67. Laplacian variance ≈ 42.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 59.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: very smooth, low-detail regions are a cue the model often associates with generative art; minimalist human work can be unfairly pulled toward 'AI'.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "027_truehuman_predai_p0.979_Mother_sea_otter_with_sleeping_pup.jpeg.jpeg",
-      "public_url_path": "/failures/027_truehuman_predai_p0.979_Mother_sea_otter_with_sleeping_pup.jpeg.jpeg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979,
-      "probabilities": {
-        "ai": 0.9790003895759583,
-        "human": 0.020999640226364136
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1828×2331px, aspect ratio 0.78. Laplacian variance ≈ 132.7 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 78.5 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "028_truehuman_predai_p0.981_PaintingBBR147_1.jpg.jpg",
-      "public_url_path": "/failures/028_truehuman_predai_p0.981_PaintingBBR147_1.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.980698,
-      "probabilities": {
-        "ai": 0.9806979894638062,
-        "human": 0.019301975145936012
+        "ai": 0.7604409456253052,
+        "human": 0.2395591139793396
       },
       "why_the_model_may_have_struggled": [
         "Geometry: 1500×1500px, aspect ratio 1.00. Laplacian variance ≈ 594.8 (proxy for fine detail / sharpness).",
@@ -491,80 +191,14 @@
       ]
     },
     {
-      "filename": "029_truehuman_predai_p0.975_Paintings-by-Joan-Miro-1140x684.jpg.jpg",
-      "public_url_path": "/failures/029_truehuman_predai_p0.975_Paintings-by-Joan-Miro-1140x684.jpg.jpg",
+      "filename": "011_truehuman_predai_p0.820_Shelley-Newman-Watching-The-Show-2022.jpg.jpg",
+      "public_url_path": "/failures/011_truehuman_predai_p0.820_Shelley-Newman-Watching-The-Show-2022.jpg.jpg",
       "true_label": "human",
       "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.974843,
+      "confidence_in_predicted_class": 0.819549,
       "probabilities": {
-        "ai": 0.97484290599823,
-        "human": 0.025157075375318527
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1140×684px, aspect ratio 1.67. Laplacian variance ≈ 157.9 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 37.5 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "030_truehuman_predai_p0.979_People-First_Report-Cover.png.png",
-      "public_url_path": "/failures/030_truehuman_predai_p0.979_People-First_Report-Cover.png.png",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978555,
-      "probabilities": {
-        "ai": 0.9785547852516174,
-        "human": 0.021445179358124733
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1025×1280px, aspect ratio 0.80. Laplacian variance ≈ 928.3 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 66.0 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "031_truehuman_predai_p0.980_Personal-Crowd-Silhouettes-Human-Group-Of-People-2045498.jpg.jpg",
-      "public_url_path": "/failures/031_truehuman_predai_p0.980_Personal-Crowd-Silhouettes-Human-Group-Of-People-2045498.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979826,
-      "probabilities": {
-        "ai": 0.9798264503479004,
-        "human": 0.020173542201519012
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 960×640px, aspect ratio 1.50. Laplacian variance ≈ 1183.7 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 103.1 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "032_truehuman_predai_p0.977_Science-of-Attraction-feat.jpg.jpg",
-      "public_url_path": "/failures/032_truehuman_predai_p0.977_Science-of-Attraction-feat.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977319,
-      "probabilities": {
-        "ai": 0.977319061756134,
-        "human": 0.02268090844154358
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2000×1335px, aspect ratio 1.50. Laplacian variance ≈ 160.7 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 43.8 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "033_truehuman_predai_p0.979_Shelley-Newman-Watching-The-Show-2022.jpg.jpg",
-      "public_url_path": "/failures/033_truehuman_predai_p0.979_Shelley-Newman-Watching-The-Show-2022.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978934,
-      "probabilities": {
-        "ai": 0.9789343476295471,
-        "human": 0.021065637469291687
+        "ai": 0.8195488452911377,
+        "human": 0.1804511398077011
       },
       "why_the_model_may_have_struggled": [
         "Geometry: 742×745px, aspect ratio 1.00. Laplacian variance ≈ 2931.5 (proxy for fine detail / sharpness).",
@@ -574,82 +208,14 @@
       ]
     },
     {
-      "filename": "034_truehuman_predai_p0.978_Tiger-Male-CJ-Walking-Waterfall-JEP_8986.jpg.jpg",
-      "public_url_path": "/failures/034_truehuman_predai_p0.978_Tiger-Male-CJ-Walking-Waterfall-JEP_8986.jpg.jpg",
+      "filename": "012_truehuman_predai_p0.725_beautiful-nature-scenery-smartphone-wallpaper-free-photo.jpg.jpg",
+      "public_url_path": "/failures/012_truehuman_predai_p0.725_beautiful-nature-scenery-smartphone-wallpaper-free-photo.jpg.jpg",
       "true_label": "human",
       "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977811,
+      "confidence_in_predicted_class": 0.725481,
       "probabilities": {
-        "ai": 0.9778108596801758,
-        "human": 0.02218911424279213
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2400×1600px, aspect ratio 1.50. Laplacian variance ≈ 2019.9 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 59.2 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "035_truehuman_predai_p0.977_arash-zia-artw3.jpg.jpg",
-      "public_url_path": "/failures/035_truehuman_predai_p0.977_arash-zia-artw3.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.976659,
-      "probabilities": {
-        "ai": 0.9766592979431152,
-        "human": 0.023340707644820213
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1920×2549px, aspect ratio 0.75. Laplacian variance ≈ 70.0 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 50.2 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: very smooth, low-detail regions are a cue the model often associates with generative art; minimalist human work can be unfairly pulled toward 'AI'.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "036_truehuman_predai_p0.978_arm-people-pleaser-2-wfxzwevfldlg.jpg.jpg",
-      "public_url_path": "/failures/036_truehuman_predai_p0.978_arm-people-pleaser-2-wfxzwevfldlg.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977577,
-      "probabilities": {
-        "ai": 0.9775766730308533,
-        "human": 0.022423282265663147
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 4006×4006px, aspect ratio 1.00. Laplacian variance ≈ 66.1 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 58.7 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: very smooth, low-detail regions are a cue the model often associates with generative art; minimalist human work can be unfairly pulled toward 'AI'.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "037_truehuman_predai_p0.978_beautiful-nature-scenery-847611-zhjrh-fb.jpg.jpg",
-      "public_url_path": "/failures/037_truehuman_predai_p0.978_beautiful-nature-scenery-847611-zhjrh-fb.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.97774,
-      "probabilities": {
-        "ai": 0.9777395129203796,
-        "human": 0.022260451689362526
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 300×300px, aspect ratio 1.00. Laplacian variance ≈ 739.2 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 63.3 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "038_truehuman_predai_p0.977_beautiful-nature-scenery-smartphone-wallpaper-free-photo.jpg.jpg",
-      "public_url_path": "/failures/038_truehuman_predai_p0.977_beautiful-nature-scenery-smartphone-wallpaper-free-photo.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977125,
-      "probabilities": {
-        "ai": 0.9771252870559692,
-        "human": 0.022874653339385986
+        "ai": 0.7254805564880371,
+        "human": 0.27451950311660767
       },
       "why_the_model_may_have_struggled": [
         "Geometry: 3264×5824px, aspect ratio 0.56. Laplacian variance ≈ 889.8 (proxy for fine detail / sharpness).",
@@ -659,114 +225,14 @@
       ]
     },
     {
-      "filename": "039_truehuman_predai_p0.976_beautiful-scenery-136-61dedf99f0878__880.jpg.jpg",
-      "public_url_path": "/failures/039_truehuman_predai_p0.976_beautiful-scenery-136-61dedf99f0878__880.jpg.jpg",
+      "filename": "013_truehuman_predai_p0.749_cat-with-ducklings.jpg.jpg",
+      "public_url_path": "/failures/013_truehuman_predai_p0.749_cat-with-ducklings.jpg.jpg",
       "true_label": "human",
       "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.975758,
+      "confidence_in_predicted_class": 0.749204,
       "probabilities": {
-        "ai": 0.9757583141326904,
-        "human": 0.02424166537821293
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 880×1320px, aspect ratio 0.67. Laplacian variance ≈ 5348.6 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 48.3 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "040_truehuman_predai_p0.977_beautiful-scenery-fb17-png__700.jpg.jpg",
-      "public_url_path": "/failures/040_truehuman_predai_p0.977_beautiful-scenery-fb17-png__700.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.976894,
-      "probabilities": {
-        "ai": 0.9768940806388855,
-        "human": 0.023105919361114502
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 700×368px, aspect ratio 1.90. Laplacian variance ≈ 3080.3 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 61.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "041_truehuman_predai_p0.976_beautiful-scenery-tree-sea-sunset-hd-wallpaper-3842-1920x1080.jpg.jpg",
-      "public_url_path": "/failures/041_truehuman_predai_p0.976_beautiful-scenery-tree-sea-sunset-hd-wallpaper-3842-1920x1080.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.976104,
-      "probabilities": {
-        "ai": 0.9761036038398743,
-        "human": 0.02389638125896454
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1920×1080px, aspect ratio 1.78. Laplacian variance ≈ 226.2 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 61.0 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "042_truehuman_predai_p0.978_beauty-nature-scenery-landscape-background-nature-composition-beautiful-.jpg",
-      "public_url_path": "/failures/042_truehuman_predai_p0.978_beauty-nature-scenery-landscape-background-nature-composition-beautiful-.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978218,
-      "probabilities": {
-        "ai": 0.9782177209854126,
-        "human": 0.02178233675658703
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 866×1390px, aspect ratio 0.62. Laplacian variance ≈ 1709.6 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 67.5 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "043_truehuman_predai_p0.979_bff24aa8-a7b3-4919-a9bc-17e1bf4452df.jpg.jpg",
-      "public_url_path": "/failures/043_truehuman_predai_p0.979_bff24aa8-a7b3-4919-a9bc-17e1bf4452df.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979061,
-      "probabilities": {
-        "ai": 0.9790614247322083,
-        "human": 0.02093859203159809
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1000×556px, aspect ratio 1.80. Laplacian variance ≈ 1443.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 67.1 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "044_truehuman_predai_p0.976_black_and_white_portraits_peter_sjo.jpg.jpg",
-      "public_url_path": "/failures/044_truehuman_predai_p0.976_black_and_white_portraits_peter_sjo.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.975538,
-      "probabilities": {
-        "ai": 0.9755377173423767,
-        "human": 0.024462273344397545
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 870×580px, aspect ratio 1.50. Laplacian variance ≈ 250.4 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 51.9 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "045_truehuman_predai_p0.978_cat-with-ducklings.jpg.jpg",
-      "public_url_path": "/failures/045_truehuman_predai_p0.978_cat-with-ducklings.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978411,
-      "probabilities": {
-        "ai": 0.9784109592437744,
-        "human": 0.02158907614648342
+        "ai": 0.7492038011550903,
+        "human": 0.25079622864723206
       },
       "why_the_model_may_have_struggled": [
         "Geometry: 1080×720px, aspect ratio 1.50. Laplacian variance ≈ 929.5 (proxy for fine detail / sharpness).",
@@ -776,82 +242,14 @@
       ]
     },
     {
-      "filename": "046_truehuman_predai_p0.979_cute-baby-animals-1558535060.jpg.jpg",
-      "public_url_path": "/failures/046_truehuman_predai_p0.979_cute-baby-animals-1558535060.jpg.jpg",
+      "filename": "014_truehuman_predai_p0.811_ef2646b821cca54a5ad1cdfcf95d2a1a.jpg.jpg",
+      "public_url_path": "/failures/014_truehuman_predai_p0.811_ef2646b821cca54a5ad1cdfcf95d2a1a.jpg.jpg",
       "true_label": "human",
       "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978919,
+      "confidence_in_predicted_class": 0.811378,
       "probabilities": {
-        "ai": 0.9789193868637085,
-        "human": 0.0210806243121624
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2000×1500px, aspect ratio 1.33. Laplacian variance ≈ 78.6 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 28.5 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: very smooth, low-detail regions are a cue the model often associates with generative art; minimalist human work can be unfairly pulled toward 'AI'.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "047_truehuman_predai_p0.982_diverse-crowd-people-different-ages-races_74855-5235.jpg.jpg",
-      "public_url_path": "/failures/047_truehuman_predai_p0.982_diverse-crowd-people-different-ages-races_74855-5235.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.98186,
-      "probabilities": {
-        "ai": 0.9818595051765442,
-        "human": 0.01814054138958454
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 626×391px, aspect ratio 1.60. Laplacian variance ≈ 1119.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 63.2 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "048_truehuman_predai_p0.980_diverse-people.jpg.jpg",
-      "public_url_path": "/failures/048_truehuman_predai_p0.980_diverse-people.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.980148,
-      "probabilities": {
-        "ai": 0.980148196220398,
-        "human": 0.019851835444569588
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2408×1245px, aspect ratio 1.93. Laplacian variance ≈ 1059.0 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 81.8 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "049_truehuman_predai_p0.978_eCC81e-DOrsay-Art-Gallery.-Photo-by-DeAgostini_Getty-Images_1-a169874-sc.jpg",
-      "public_url_path": "/failures/049_truehuman_predai_p0.978_eCC81e-DOrsay-Art-Gallery.-Photo-by-DeAgostini_Getty-Images_1-a169874-sc.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978006,
-      "probabilities": {
-        "ai": 0.9780063629150391,
-        "human": 0.021993687376379967
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2560×2035px, aspect ratio 1.26. Laplacian variance ≈ 2410.7 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 57.6 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "050_truehuman_predai_p0.978_ef2646b821cca54a5ad1cdfcf95d2a1a.jpg.jpg",
-      "public_url_path": "/failures/050_truehuman_predai_p0.978_ef2646b821cca54a5ad1cdfcf95d2a1a.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977828,
-      "probabilities": {
-        "ai": 0.9778276085853577,
-        "human": 0.022172430530190468
+        "ai": 0.8113778233528137,
+        "human": 0.18862216174602509
       },
       "why_the_model_may_have_struggled": [
         "Geometry: 681×960px, aspect ratio 0.71. Laplacian variance ≈ 189.2 (proxy for fine detail / sharpness).",
@@ -860,47 +258,14 @@
       ]
     },
     {
-      "filename": "051_truehuman_predai_p0.978_famous-portrait-paintings_wide-3-2-636b81a7177ce.png.png",
-      "public_url_path": "/failures/051_truehuman_predai_p0.978_famous-portrait-paintings_wide-3-2-636b81a7177ce.png.png",
+      "filename": "015_truehuman_predai_p0.855_female-face-girl-with-wind-in-hair.jpg.jpg",
+      "public_url_path": "/failures/015_truehuman_predai_p0.855_female-face-girl-with-wind-in-hair.jpg.jpg",
       "true_label": "human",
       "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977512,
+      "confidence_in_predicted_class": 0.855087,
       "probabilities": {
-        "ai": 0.9775124192237854,
-        "human": 0.022487573325634003
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1200×800px, aspect ratio 1.50. Laplacian variance ≈ 870.9 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 51.3 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "052_truehuman_predai_p0.977_female-face-girl-posing-outdoors-in-natural-light.jpg.jpg",
-      "public_url_path": "/failures/052_truehuman_predai_p0.977_female-face-girl-posing-outdoors-in-natural-light.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977298,
-      "probabilities": {
-        "ai": 0.9772975444793701,
-        "human": 0.022702476009726524
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 467×700px, aspect ratio 0.67. Laplacian variance ≈ 192.1 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 70.1 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "053_truehuman_predai_p0.979_female-face-girl-with-wind-in-hair.jpg.jpg",
-      "public_url_path": "/failures/053_truehuman_predai_p0.979_female-face-girl-with-wind-in-hair.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978507,
-      "probabilities": {
-        "ai": 0.9785071611404419,
-        "human": 0.0214928537607193
+        "ai": 0.8550868630409241,
+        "human": 0.14491315186023712
       },
       "why_the_model_may_have_struggled": [
         "Geometry: 467×700px, aspect ratio 0.67. Laplacian variance ≈ 310.4 (proxy for fine detail / sharpness).",
@@ -910,48 +275,14 @@
       ]
     },
     {
-      "filename": "054_truehuman_predai_p0.979_file-20231005-16-1flnlj.jpg.jpg",
-      "public_url_path": "/failures/054_truehuman_predai_p0.979_file-20231005-16-1flnlj.jpg.jpg",
+      "filename": "016_truehuman_predai_p0.926_homeless-man-color-poverty.jpg.jpg",
+      "public_url_path": "/failures/016_truehuman_predai_p0.926_homeless-man-color-poverty.jpg.jpg",
       "true_label": "human",
       "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978836,
+      "confidence_in_predicted_class": 0.926261,
       "probabilities": {
-        "ai": 0.9788364768028259,
-        "human": 0.021163474768400192
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1920×1280px, aspect ratio 1.50. Laplacian variance ≈ 1090.3 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 36.8 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "055_truehuman_predai_p0.980_final_credit-alamy-1.jpg.jpg",
-      "public_url_path": "/failures/055_truehuman_predai_p0.980_final_credit-alamy-1.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.980493,
-      "probabilities": {
-        "ai": 0.9804930090904236,
-        "human": 0.01950697787106037
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2000×1200px, aspect ratio 1.67. Laplacian variance ≈ 1451.6 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 40.6 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "056_truehuman_predai_p0.976_homeless-man-color-poverty.jpg.jpg",
-      "public_url_path": "/failures/056_truehuman_predai_p0.976_homeless-man-color-poverty.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.976306,
-      "probabilities": {
-        "ai": 0.9763059020042419,
-        "human": 0.023694099858403206
+        "ai": 0.9262609481811523,
+        "human": 0.07373903691768646
       },
       "why_the_model_may_have_struggled": [
         "Geometry: 4000×5000px, aspect ratio 0.80. Laplacian variance ≈ 1606.8 (proxy for fine detail / sharpness).",
@@ -961,507 +292,18 @@
       ]
     },
     {
-      "filename": "057_truehuman_predai_p0.981_how-to-draw-an-easy-rainbow-scenery-featured-image-1200.png.png",
-      "public_url_path": "/failures/057_truehuman_predai_p0.981_how-to-draw-an-easy-rainbow-scenery-featured-image-1200.png.png",
+      "filename": "017_truehuman_predai_p0.762_wers-blooming-green-grass-spring-concept-generative-ai-technology-free-p.jpg",
+      "public_url_path": "/failures/017_truehuman_predai_p0.762_wers-blooming-green-grass-spring-concept-generative-ai-technology-free-p.jpg",
       "true_label": "human",
       "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.980544,
+      "confidence_in_predicted_class": 0.762303,
       "probabilities": {
-        "ai": 0.9805441498756409,
-        "human": 0.01945590227842331
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1200×1200px, aspect ratio 1.00. Laplacian variance ≈ 1149.2 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 60.7 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "058_truehuman_predai_p0.979_hq720.jpg.jpg",
-      "public_url_path": "/failures/058_truehuman_predai_p0.979_hq720.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979488,
-      "probabilities": {
-        "ai": 0.9794881939888,
-        "human": 0.020511792972683907
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1280×720px, aspect ratio 1.78. Laplacian variance ≈ 624.2 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 88.8 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "059_truehuman_predai_p0.981_iStock-1326443525.2e16d0ba.fill-950x535.jpg.jpg",
-      "public_url_path": "/failures/059_truehuman_predai_p0.981_iStock-1326443525.2e16d0ba.fill-950x535.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.980992,
-      "probabilities": {
-        "ai": 0.980991542339325,
-        "human": 0.019008418545126915
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 950×535px, aspect ratio 1.78. Laplacian variance ≈ 935.9 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 69.2 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "060_truehuman_predai_p0.980_il_570xN.354623508_9g1k.jpg.jpg",
-      "public_url_path": "/failures/060_truehuman_predai_p0.980_il_570xN.354623508_9g1k.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.980352,
-      "probabilities": {
-        "ai": 0.9803518652915955,
-        "human": 0.019648108631372452
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 570×613px, aspect ratio 0.93. Laplacian variance ≈ 292.7 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 38.9 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "061_truehuman_predai_p0.979_il_570xN.4398975758_9o5j.jpg.jpg",
-      "public_url_path": "/failures/061_truehuman_predai_p0.979_il_570xN.4398975758_9o5j.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978758,
-      "probabilities": {
-        "ai": 0.9787580370903015,
-        "human": 0.021241970360279083
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 570×728px, aspect ratio 0.78. Laplacian variance ≈ 592.1 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 53.2 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "062_truehuman_predai_p0.980_images31.jpg.jpg",
-      "public_url_path": "/failures/062_truehuman_predai_p0.980_images31.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.980165,
-      "probabilities": {
-        "ai": 0.9801647663116455,
-        "human": 0.01983526162803173
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 312×161px, aspect ratio 1.94. Laplacian variance ≈ 4464.7 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 79.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "063_truehuman_predai_p0.979_images34.jpg.jpg",
-      "public_url_path": "/failures/063_truehuman_predai_p0.979_images34.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979425,
-      "probabilities": {
-        "ai": 0.9794253706932068,
-        "human": 0.020574627444148064
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 276×182px, aspect ratio 1.52. Laplacian variance ≈ 5582.9 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 76.2 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "064_truehuman_predai_p0.980_images39.jpg.jpg",
-      "public_url_path": "/failures/064_truehuman_predai_p0.980_images39.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.980289,
-      "probabilities": {
-        "ai": 0.9802892804145813,
-        "human": 0.019710686057806015
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 275×183px, aspect ratio 1.50. Laplacian variance ≈ 5119.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 74.3 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "065_truehuman_predai_p0.979_images40.jpg.jpg",
-      "public_url_path": "/failures/065_truehuman_predai_p0.979_images40.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978912,
-      "probabilities": {
-        "ai": 0.9789121747016907,
-        "human": 0.021087784320116043
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 296×170px, aspect ratio 1.74. Laplacian variance ≈ 11690.2 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 73.0 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "066_truehuman_predai_p0.981_images6.jpg.jpg",
-      "public_url_path": "/failures/066_truehuman_predai_p0.981_images6.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.981002,
-      "probabilities": {
-        "ai": 0.9810017943382263,
-        "human": 0.018998168408870697
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 259×194px, aspect ratio 1.34. Laplacian variance ≈ 2225.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 68.1 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "067_truehuman_predai_p0.978_images64.jpg.jpg",
-      "public_url_path": "/failures/067_truehuman_predai_p0.978_images64.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977627,
-      "probabilities": {
-        "ai": 0.977627158164978,
-        "human": 0.022372879087924957
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 191×264px, aspect ratio 0.72. Laplacian variance ≈ 6078.4 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 73.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "068_truehuman_predai_p0.979_index-celebs-who-ran-for-office-1566504748.jpg.jpg",
-      "public_url_path": "/failures/068_truehuman_predai_p0.979_index-celebs-who-ran-for-office-1566504748.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979001,
-      "probabilities": {
-        "ai": 0.9790014028549194,
-        "human": 0.02099856734275818
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 768×384px, aspect ratio 2.00. Laplacian variance ≈ 924.7 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 77.3 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "069_truehuman_predai_p0.979_iy1ex3cookmf9cme5qlnxa.jpg.jpg",
-      "public_url_path": "/failures/069_truehuman_predai_p0.979_iy1ex3cookmf9cme5qlnxa.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979472,
-      "probabilities": {
-        "ai": 0.9794719219207764,
-        "human": 0.020528066903352737
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1840×1040px, aspect ratio 1.77. Laplacian variance ≈ 333.6 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 73.9 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "070_truehuman_predai_p0.981_julien.jpg.jpg",
-      "public_url_path": "/failures/070_truehuman_predai_p0.981_julien.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.980581,
-      "probabilities": {
-        "ai": 0.9805808067321777,
-        "human": 0.019419172778725624
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1080×1603px, aspect ratio 0.67. Laplacian variance ≈ 14.4 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 70.7 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: very smooth, low-detail regions are a cue the model often associates with generative art; minimalist human work can be unfairly pulled toward 'AI'.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "071_truehuman_predai_p0.979_lamb-iStock-665494268-16x9-e1559777676675-1200x675.jpg.jpg",
-      "public_url_path": "/failures/071_truehuman_predai_p0.979_lamb-iStock-665494268-16x9-e1559777676675-1200x675.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978965,
-      "probabilities": {
-        "ai": 0.9789645075798035,
-        "human": 0.021035531535744667
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1200×675px, aspect ratio 1.78. Laplacian variance ≈ 35.4 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 67.6 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: very smooth, low-detail regions are a cue the model often associates with generative art; minimalist human work can be unfairly pulled toward 'AI'.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "072_truehuman_predai_p0.979_large-beautiful-print-of-village-scenery-waterproof-texture-original-ima.jpeg",
-      "public_url_path": "/failures/072_truehuman_predai_p0.979_large-beautiful-print-of-village-scenery-waterproof-texture-original-ima.jpeg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979278,
-      "probabilities": {
-        "ai": 0.9792782068252563,
-        "human": 0.02072177827358246
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 850×462px, aspect ratio 1.84. Laplacian variance ≈ 1618.0 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 65.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "073_truehuman_predai_p0.979_lindsay-adler-male-portrait-final-image.jpeg.jpeg",
-      "public_url_path": "/failures/073_truehuman_predai_p0.979_lindsay-adler-male-portrait-final-image.jpeg.jpeg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979036,
-      "probabilities": {
-        "ai": 0.9790359139442444,
-        "human": 0.020964015275239944
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1000×667px, aspect ratio 1.50. Laplacian variance ≈ 1248.2 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 107.3 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "074_truehuman_predai_p0.980_lindsey-pattison_october-2023_hero.jpg.jpg",
-      "public_url_path": "/failures/074_truehuman_predai_p0.980_lindsey-pattison_october-2023_hero.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.980436,
-      "probabilities": {
-        "ai": 0.9804359674453735,
-        "human": 0.019564075395464897
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 5137×2891px, aspect ratio 1.78. Laplacian variance ≈ 2.1 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 84.1 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: very smooth, low-detail regions are a cue the model often associates with generative art; minimalist human work can be unfairly pulled toward 'AI'.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "075_truehuman_predai_p0.974_looking-at-the-beautiful-scenery-vector-18883800.jpg.jpg",
-      "public_url_path": "/failures/075_truehuman_predai_p0.974_looking-at-the-beautiful-scenery-vector-18883800.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.973625,
-      "probabilities": {
-        "ai": 0.9736247658729553,
-        "human": 0.026375245302915573
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1000×787px, aspect ratio 1.27. Laplacian variance ≈ 655.7 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 59.0 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "076_truehuman_predai_p0.979_meerkat-closeup-log_2x3.jpg.jpg",
-      "public_url_path": "/failures/076_truehuman_predai_p0.979_meerkat-closeup-log_2x3.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978917,
-      "probabilities": {
-        "ai": 0.9789170026779175,
-        "human": 0.021082961931824684
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2048×3072px, aspect ratio 0.67. Laplacian variance ≈ 14.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 48.3 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: very smooth, low-detail regions are a cue the model often associates with generative art; minimalist human work can be unfairly pulled toward 'AI'.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "077_truehuman_predai_p0.974_natural-scenery-pictures-736-x-1308-2yckka60jpvm2q4e.jpg.jpg",
-      "public_url_path": "/failures/077_truehuman_predai_p0.974_natural-scenery-pictures-736-x-1308-2yckka60jpvm2q4e.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.973684,
-      "probabilities": {
-        "ai": 0.9736841320991516,
-        "human": 0.026315860450267792
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 736×1308px, aspect ratio 0.56. Laplacian variance ≈ 1035.9 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 46.7 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "078_truehuman_predai_p0.979_people-movement_740563843.jpg.jpg",
-      "public_url_path": "/failures/078_truehuman_predai_p0.979_people-movement_740563843.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978872,
-      "probabilities": {
-        "ai": 0.9788723587989807,
-        "human": 0.02112771011888981
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2000×1125px, aspect ratio 1.78. Laplacian variance ≈ 322.2 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 76.9 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "079_truehuman_predai_p0.979_pexels-mali-maeder-110820-1280x720.png.png",
-      "public_url_path": "/failures/079_truehuman_predai_p0.979_pexels-mali-maeder-110820-1280x720.png.png",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979023,
-      "probabilities": {
-        "ai": 0.9790228009223938,
-        "human": 0.020977193489670753
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1280×720px, aspect ratio 1.78. Laplacian variance ≈ 512.6 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 48.0 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "080_truehuman_predai_p0.976_pexels-photo-1172064.jpeg.jpeg",
-      "public_url_path": "/failures/080_truehuman_predai_p0.976_pexels-photo-1172064.jpeg.jpeg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.975723,
-      "probabilities": {
-        "ai": 0.9757230281829834,
-        "human": 0.024277007207274437
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2832×4256px, aspect ratio 0.67. Laplacian variance ≈ 3623.7 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 51.6 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "081_truehuman_predai_p0.977_pexels-photo-620337.jpeg.jpeg",
-      "public_url_path": "/failures/081_truehuman_predai_p0.977_pexels-photo-620337.jpeg.jpeg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.977295,
-      "probabilities": {
-        "ai": 0.9772951602935791,
-        "human": 0.02270488813519478
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 2921×1946px, aspect ratio 1.50. Laplacian variance ≈ 92.8 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 69.8 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "082_truehuman_predai_p0.978_scenery-lake-blue-sky-forest-reflection-scenic-clouds-6016x3384-6639.jpg.jpg",
-      "public_url_path": "/failures/082_truehuman_predai_p0.978_scenery-lake-blue-sky-forest-reflection-scenic-clouds-6016x3384-6639.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.978092,
-      "probabilities": {
-        "ai": 0.9780922532081604,
-        "human": 0.021907715126872063
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 6016×3384px, aspect ratio 1.78. Laplacian variance ≈ 274.4 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 71.9 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "083_truehuman_predai_p0.979_sddefault.jpg.jpg",
-      "public_url_path": "/failures/083_truehuman_predai_p0.979_sddefault.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979022,
-      "probabilities": {
-        "ai": 0.9790220856666565,
-        "human": 0.02097792737185955
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 640×480px, aspect ratio 1.33. Laplacian variance ≈ 1447.9 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 94.6 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "084_truehuman_predai_p0.976_self-portrait-of-a-man.jpg.jpg",
-      "public_url_path": "/failures/084_truehuman_predai_p0.976_self-portrait-of-a-man.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.975501,
-      "probabilities": {
-        "ai": 0.9755008816719055,
-        "human": 0.024499157443642616
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1000×667px, aspect ratio 1.50. Laplacian variance ≈ 145.0 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 79.1 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "085_truehuman_predai_p0.977_wers-blooming-green-grass-spring-concept-generative-ai-technology-free-p.jpg",
-      "public_url_path": "/failures/085_truehuman_predai_p0.977_wers-blooming-green-grass-spring-concept-generative-ai-technology-free-p.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.976533,
-      "probabilities": {
-        "ai": 0.9765334725379944,
-        "human": 0.023466557264328003
+        "ai": 0.762302815914154,
+        "human": 0.23769716918468475
       },
       "why_the_model_may_have_struggled": [
         "Geometry: 347×200px, aspect ratio 1.74. Laplacian variance ≈ 1526.1 (proxy for fine detail / sharpness).",
         "Color spread (mean BGR channel std) ≈ 62.1 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
-        "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
-        "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
-      ]
-    },
-    {
-      "filename": "086_truehuman_predai_p0.979_wild_and_wonderful_asian_animals_header_1140.jpg.jpg",
-      "public_url_path": "/failures/086_truehuman_predai_p0.979_wild_and_wonderful_asian_animals_header_1140.jpg.jpg",
-      "true_label": "human",
-      "predicted_label": "ai",
-      "confidence_in_predicted_class": 0.979236,
-      "probabilities": {
-        "ai": 0.9792355895042419,
-        "human": 0.02076440490782261
-      },
-      "why_the_model_may_have_struggled": [
-        "Geometry: 1140×641px, aspect ratio 1.78. Laplacian variance ≈ 1387.5 (proxy for fine detail / sharpness).",
-        "Color spread (mean BGR channel std) ≈ 70.4 — richer palettes can correlate with either photographic captures or heavily stylized AI outputs.",
         "HCI angle: strong micro-texture can look 'physical' or photographic; synthetic images that mimic film grain or canvas can be mislabeled as human.",
         "Possible failure story: clean vector-like composition, flat shading, or digital poster aesthetics overlap the training distribution of AI samples."
       ]
