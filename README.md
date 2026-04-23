@@ -2,6 +2,48 @@
 
 CMU **05-318** — *Art or Algorithm*: distinguishing human creativity from AI ingenuity (image classifier + web app).
 
+## Open-Source Code, Changes, and Original Work
+
+### Open-source libraries and pretrained weights used
+
+| Component | Source | License |
+|-----------|--------|---------|
+| **ViT-B/16 pretrained model** | `torchvision.models.vit_b_16(weights=IMAGENET1K_V1)` | BSD-3-Clause |
+| **PyTorch / torchvision** | [pytorch.org](https://pytorch.org) | BSD-3-Clause |
+| **timm** (PyTorch Image Models) | [huggingface/pytorch-image-models](https://github.com/huggingface/pytorch-image-models) | Apache-2.0 |
+| **Vue 3 + Vite** | [vuejs.org](https://vuejs.org) / [vite.dev](https://vite.dev) | MIT |
+| **Chart.js / vue-chartjs** | [chartjs.org](https://www.chartjs.org) | MIT |
+| **Express / multer / cors** | [expressjs.com](https://expressjs.com) | MIT |
+| **Dataset** | [Kaggle: AI Art vs Human Art](https://www.kaggle.com/datasets/hassnainzaidi/ai-art-vs-human-art) (hassnainzaidi) | CC0-1.0 |
+
+No application-level starter code or boilerplate template was used. The Vue project was scaffolded with `npm create vite@latest` (empty template), and all component code was written from scratch.
+
+### Changes made to imported code
+
+- **ViT-B/16 classification head replaced:** the stock 1000-class ImageNet head was swapped for `LayerNorm(768) → Linear(768, 2)` for binary AI-vs-human classification.
+- **Partial fine-tuning:** 9 of 12 encoder blocks frozen; only the last 3 blocks + encoder LayerNorm + new head are trainable (21.3 M of 85.8 M parameters).
+- **MPS bug workaround:** disabled `non_blocking=True` on Apple Silicon MPS transfers to fix a race condition that caused non-deterministic evaluation (see `ml/train.py`, `ml/inference.py`, `ml/analyze_failures.py`).
+
+### New code implemented (all original)
+
+| File / Directory | What it does |
+|------------------|--------------|
+| `run_train.py` | Master training runner with AdamW differential LR, cosine schedule with warmup, label smoothing, early stopping, and rich `metrics.json` output |
+| `ml/train.py` | Model construction, training loop, evaluation, and per-class metrics |
+| `ml/dataset.py` | Custom dataset/dataloader with augmentation pipeline (RandomResizedCrop, ColorJitter, RandomErasing, etc.) |
+| `ml/inference.py` | CLI + library inference with **Attention Rollout** heatmap generation (extracts attention matrices from all 12 encoder layers, multiplies through residual connections, produces a 224×224 overlay) |
+| `ml/analyze_failures.py` | High-confidence failure extraction with heuristic explanations for the failure gallery |
+| `server/src/index.js` | Express backend: image upload, Python subprocess bridge for inference, static serving, metrics/failures API |
+| `client/src/components/Classifier.vue` | Guess-first classifier flow with staged disclosure, attention heatmap overlay, agreement/disagreement framing |
+| `client/src/components/MetricsDashboard.vue` | Interactive Chart.js training curves and summary stats |
+| `client/src/components/FailureGallery.vue` | Grid of high-confidence misclassifications with explanations |
+| `client/src/components/AboutProject.vue` | Full project documentation page |
+| `client/src/components/ImageUpload.vue` | Accessible drag-and-drop upload with keyboard support |
+| `client/src/App.vue`, `client/src/style.css` | Gallery-themed UI: Fraunces/Source Sans typography, warm parchment palette, progressive disclosure layout |
+| `scripts/split_train_eval.py` | Stratified train/val split script |
+| `scripts/sync-static-assets.mjs` | Copies metrics + failure data into `client/public` for static GitHub Pages builds |
+| `.github/workflows/deploy-pages.yml` | CI/CD for GitHub Pages deployment |
+
 ## Environment
 
 ```bash
